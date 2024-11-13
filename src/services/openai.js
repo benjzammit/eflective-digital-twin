@@ -128,8 +128,6 @@ export const generateDigitalTwinFeedback = async (feedbackContent, persona, resp
       ? DETAILED_PROMPT_TEMPLATE(persona, feedbackContent)
       : QUICK_SUMMARY_PROMPT_TEMPLATE(persona, feedbackContent);
 
-    console.log('Using prompt template:', promptTemplate);
-
     const completion = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
@@ -146,43 +144,32 @@ export const generateDigitalTwinFeedback = async (feedbackContent, persona, resp
       max_tokens: 1000
     });
 
-    console.log('OpenAI response:', completion.choices[0].message.content);
+    const response = completion.choices[0].message.content;
+    console.log('OpenAI response:', response);
 
-    const parsedResponse = JSON.parse(completion.choices[0].message.content);
-    return parsedResponse;
+    const parsedResponse = JSON.parse(response);
+    return {
+      ...parsedResponse,
+      personaName: persona.name,
+      personaId: persona.id
+    };
 
   } catch (error) {
-    console.error('Detailed error in generateDigitalTwinFeedback:', {
-      error: error.message,
-      stack: error.stack,
-      feedbackContent,
-      personaName: persona?.name,
-      responseType
-    });
-    
-    // Throw a more specific error
-    if (error.message.includes('API key')) {
-      throw new Error('OpenAI API key error. Please check your configuration.');
-    }
-    if (error.message.includes('rate limit')) {
-      throw new Error('Rate limit exceeded. Please try again in a moment.');
-    }
+    console.error('Detailed error in generateDigitalTwinFeedback:', error);
     throw error;
   }
 };
 
-export const generateOverallAnalysis = async (individualFeedback) => {
+export const generateOverallAnalysis = async (responses) => {
   try {
-    // Validate input
-    if (!individualFeedback || Object.keys(individualFeedback).length === 0) {
-      throw new Error('Individual feedback is required');
+    if (!responses || !Array.isArray(responses) || responses.length === 0) {
+      throw new Error('Valid responses array is required');
     }
 
-    console.log('Generating overall analysis for feedback:', individualFeedback);
-
-    const feedbackSummary = Object.values(individualFeedback)
-      .map(f => `${f.name}: ${f.sentiment} sentiment, ${f.responseType === 'detailed' ? f.analysis : f.summary}`)
-      .join('\n\n');
+    // Create a summary of all feedback
+    const feedbackSummary = responses.map(response => 
+      `${response.personaName}: ${response.sentiment} sentiment, ${response.analysis}`
+    ).join('\n\n');
 
     console.log('Feedback summary:', feedbackSummary);
 
@@ -191,42 +178,48 @@ export const generateOverallAnalysis = async (individualFeedback) => {
       messages: [
         {
           role: "system",
-          content: "Analyze multiple pieces of feedback and provide a comprehensive summary. Ensure your response is in valid JSON format."
+          content: `You are an AI that analyzes multiple pieces of feedback and provides an overall analysis. 
+          Your response must be in the following JSON format:
+          {
+            "overallSentiment": "positive/negative/neutral",
+            "keyInsights": "A detailed paragraph summarizing key insights from all feedback",
+            "marketPotential": "A detailed assessment of market potential based on the feedback",
+            "consensusPoints": ["point1", "point2", "point3"],
+            "recommendedActions": ["action1", "action2", "action3"]
+          }`
         },
         {
           role: "user",
-          content: `Based on the following individual feedback:\n\n${feedbackSummary}\n\nProvide an overall analysis in this JSON structure:
-          {
-            "overallSentiment": "positive/neutral/negative",
-            "consensusPoints": [
-              "<point 1>",
-              "<point 2>",
-              "<point 3>"
-            ],
-            "keyInsights": "<paragraph of key insights>",
-            "marketPotential": "<assessment of market potential>",
-            "recommendedActions": [
-              "<action 1>",
-              "<action 2>",
-              "<action 3>"
-            ]
-          }`
+          content: `Please analyze these different perspectives and provide a comprehensive overall analysis that includes sentiment analysis, key insights, market potential, points of consensus, and recommended actions:\n\n${feedbackSummary}`
         }
       ],
       temperature: 0.7,
       max_tokens: 1000
     });
 
-    console.log('OpenAI response for overall analysis:', completion.choices[0].message.content);
+    const response = completion.choices[0].message.content;
+    console.log('OpenAI response for overall analysis:', response);
 
-    return JSON.parse(completion.choices[0].message.content);
+    const parsedResponse = JSON.parse(response);
+    
+    // Ensure all required fields exist
+    return {
+      overallSentiment: parsedResponse.overallSentiment || 'neutral',
+      keyInsights: parsedResponse.keyInsights || 'No insights available',
+      marketPotential: parsedResponse.marketPotential || 'No market potential analysis available',
+      consensusPoints: parsedResponse.consensusPoints || [],
+      recommendedActions: parsedResponse.recommendedActions || []
+    };
 
   } catch (error) {
-    console.error('Detailed error in generateOverallAnalysis:', {
-      error: error.message,
-      stack: error.stack,
-      feedbackCount: Object.keys(individualFeedback || {}).length
-    });
-    throw error;
+    console.error('Error in generateOverallAnalysis:', error);
+    // Return a default structure in case of error
+    return {
+      overallSentiment: 'neutral',
+      keyInsights: 'Analysis currently unavailable',
+      marketPotential: 'Market potential analysis currently unavailable',
+      consensusPoints: ['No consensus points available'],
+      recommendedActions: ['No recommended actions available']
+    };
   }
 }; 

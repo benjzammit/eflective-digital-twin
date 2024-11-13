@@ -53,10 +53,14 @@ const Sidebar = ({ onGenerate, isLoading, width }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!selectedPersonas.length) {
+      alert('Please select at least one persona');
+      return;
+    }
     onGenerate({
       feedbackContent,
       responseType,
-      selectedPersonas,
+      selectedPersonas
     });
   };
 

@@ -20,7 +20,8 @@ import {
   MobileStepper,
   IconButton,
   Divider,
-  Rating
+  Rating,
+  Stack
 } from '@mui/material';
 import { 
   Psychology,
@@ -39,7 +40,8 @@ import {
   GroupWork,
   InsightsOutlined,
   FormatQuote,
-  AccessTime
+  AccessTime,
+  Group
 } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
@@ -161,37 +163,45 @@ const AboutPage = () => {
     <Box>
       {/* Hero Section */}
       <HeroSection>
-        <Container maxWidth="md">
-          <Typography variant="h2" gutterBottom fontWeight="bold">
-            Real Consumer Feedback, Real People
+        <Container maxWidth="lg">
+          <Typography variant="h2" gutterBottom>
+            AI-Powered Consumer Research
           </Typography>
           <Typography variant="h5" color="text.secondary" paragraph>
-            AI-Powered Digital Twins with Academic Precision
+            Get instant feedback from academically-validated digital twins
           </Typography>
-          <Box sx={{ mb: 4 }}>
-            <Typography variant="h6" color="text.secondary" gutterBottom>
-              Join leading brands getting insights from our academically-profiled digital twins
-            </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mb: 3 }}>
-              {['98% Accuracy', '2x Faster Insights', '40+ Academic Profiles'].map((stat) => (
-                <Chip 
-                  key={stat}
-                  label={stat}
-                  color="primary"
-                  variant="outlined"
-                  sx={{ fontWeight: 'bold' }}
-                />
-              ))}
-            </Box>
-          </Box>
-          <Button 
-            variant="contained" 
-            size="large" 
-            endIcon={<ArrowForward />}
-            sx={{ px: 4, py: 1.5 }}
-          >
-            Start Free Trial
-          </Button>
+          <Stack direction="row" spacing={2} justifyContent="center">
+            <Button 
+              variant="contained" 
+              size="large"
+              href="/research-lab"
+              endIcon={<ArrowForward />}
+              sx={{ 
+                px: 4, 
+                py: 1.5,
+                borderRadius: 2,
+                textTransform: 'none',
+                fontSize: '1.1rem'
+              }}
+            >
+              Try Research Lab
+            </Button>
+            <Button 
+              variant="outlined" 
+              size="large"
+              href="/personas"
+              endIcon={<Group />}
+              sx={{ 
+                px: 4, 
+                py: 1.5,
+                borderRadius: 2,
+                textTransform: 'none',
+                fontSize: '1.1rem'
+              }}
+            >
+              Meet Digital Twins
+            </Button>
+          </Stack>
         </Container>
       </HeroSection>
 
@@ -870,23 +880,102 @@ const AboutPage = () => {
             >
               Join leading brands using Reflective's digital twins for faster, more accurate consumer insights.
             </Typography>
-            <Button 
-              variant="contained" 
-              size="large" 
-              endIcon={<ArrowForward />}
-              sx={{ 
-                px: 4, 
-                py: 1.5,
-                borderRadius: 2,
-                textTransform: 'none',
-                fontSize: '1.1rem'
-              }}
+            <Stack 
+              direction={{ xs: 'column', sm: 'row' }} 
+              spacing={2} 
+              justifyContent="center"
             >
-              Start Free Trial
-            </Button>
+              <Button 
+                variant="contained" 
+                size="large" 
+                href="/research-lab"
+                endIcon={<ArrowForward />}
+                sx={{ 
+                  px: 4, 
+                  py: 1.5,
+                  borderRadius: 2,
+                  textTransform: 'none',
+                  fontSize: '1.1rem'
+                }}
+              >
+                Start Free Trial
+              </Button>
+              <Button 
+                variant="outlined" 
+                size="large"
+                href="/use-cases"
+                endIcon={<Psychology />}
+                sx={{ 
+                  px: 4, 
+                  py: 1.5,
+                  borderRadius: 2,
+                  textTransform: 'none',
+                  fontSize: '1.1rem'
+                }}
+              >
+                View Use Cases
+              </Button>
+            </Stack>
           </Box>
         </Container>
       </SectionWrapper>
+
+      {/* After Why Choose Reflective grid */}
+      <Box sx={{ textAlign: 'center', mt: 4, mb: 6 }}>
+        <Button 
+          variant="contained"
+          size="large"
+          href="/use-cases"
+          endIcon={<Psychology />}
+          sx={{ 
+            px: 4,
+            py: 1.5,
+            borderRadius: 2,
+            textTransform: 'none',
+            fontSize: '1.1rem',
+            background: (theme) => `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
+            '&:hover': {
+              background: (theme) => `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main})`
+            }
+          }}
+        >
+          Explore Real Use Cases
+        </Button>
+      </Box>
+
+      {/* After the Case Studies Carousel */}
+      <Box sx={{ 
+        textAlign: 'center', 
+        mt: 6, 
+        mb: 4,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2
+      }}>
+        <Typography variant="h6" color="text.secondary">
+          Ready to get insights for your product?
+        </Typography>
+        <Button 
+          variant="contained"
+          size="large"
+          href="/research-lab"
+          endIcon={<ArrowForward />}
+          sx={{ 
+            px: 4,
+            py: 1.5,
+            borderRadius: 2,
+            textTransform: 'none',
+            fontSize: '1.1rem',
+            background: (theme) => `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.primary.dark})`,
+            '&:hover': {
+              background: (theme) => `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.primary.main})`
+            }
+          }}
+        >
+          Ask Your Question Now
+        </Button>
+      </Box>
     </Box>
   );
 };

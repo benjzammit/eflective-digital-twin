@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useTheme, Typography } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -8,68 +8,41 @@ const HEADER_HEIGHT = 64;
 const FOOTER_HEIGHT = 48;
 const SIDEBAR_WIDTH = '30%';
 
-const MainLayout = ({ children, onGenerate, isLoading, feedbackData, overallAnalysis }) => {
-  const theme = useTheme();
+const MainLayout = ({ children, onGenerate, isLoading, feedbackData }) => {
   const location = useLocation();
-  const isResearchLabPage = location.pathname === '/research-lab' || location.pathname === '/';
+  const theme = useTheme();
+  
+  const showSidebar = location.pathname === '/research-lab';
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Header />
-
-      <Box 
-        sx={{ 
-          display: 'flex', 
+      <Box
+        component="main"
+        sx={{
+          display: 'flex',
           flex: 1,
           mt: `${HEADER_HEIGHT}px`,
-          mb: `${FOOTER_HEIGHT}px`
+          minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)`,
         }}
       >
-        {/* Only render Sidebar on Research Lab page */}
-        {isResearchLabPage && (
-          <Box sx={{ width: SIDEBAR_WIDTH, flexShrink: 0 }}>
-            <Sidebar 
-              onGenerate={onGenerate} 
-              isLoading={isLoading} 
-              width={SIDEBAR_WIDTH}
-            />
-          </Box>
+        {showSidebar && (
+          <Sidebar 
+            width={SIDEBAR_WIDTH} 
+            onGenerate={onGenerate}
+            isLoading={isLoading}
+            feedbackData={feedbackData}
+          />
         )}
-
         <Box
-          component="main"
           sx={{
-            flexGrow: 1,
-            p: 3,
-            backgroundColor: 'grey.50',
-            overflow: 'auto',
-            width: isResearchLabPage ? `calc(100% - ${SIDEBAR_WIDTH})` : '100%'
+            flex: 1,
+            width: showSidebar ? `calc(100% - ${SIDEBAR_WIDTH})` : '100%',
+            overflow: 'auto'
           }}
         >
           {children}
         </Box>
-      </Box>
-
-      <Box
-        component="footer"
-        sx={{
-          position: 'fixed',
-          bottom: 0,
-          width: '100%',
-          height: FOOTER_HEIGHT,
-          backgroundColor: 'background.paper',
-          borderTop: '1px solid',
-          borderColor: 'divider',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          px: 3,
-          zIndex: theme.zIndex.drawer + 1,
-        }}
-      >
-        <Typography variant="body2" color="text.secondary">
-          © 2024 Reflective. All rights reserved.
-        </Typography>
       </Box>
     </Box>
   );

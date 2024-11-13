@@ -18,7 +18,7 @@ import {
   Info,
   GitHub
 } from '@mui/icons-material';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const HEADER_HEIGHT = 64;
 
@@ -86,7 +86,11 @@ const Header = () => {
   const theme = useTheme();
   const location = useLocation();
   const currentPath = location.pathname;
+  const navigate = useNavigate();
 
+  const handleLogoClick = () => {
+    navigate('/');
+  };
   const navigationItems = [
     {
       to: "/research-lab",
@@ -102,11 +106,6 @@ const Header = () => {
       to: "/personas",
       icon: Group,
       label: "Digital Twins"
-    },
-    {
-      to: "/about",
-      icon: Info,
-      label: "About"
     }
   ];
 

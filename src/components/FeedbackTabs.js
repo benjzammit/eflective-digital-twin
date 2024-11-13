@@ -7,443 +7,233 @@ import {
   Typography,
   Card,
   CardContent,
-  Chip,
   Grid,
-  Avatar,
   CircularProgress,
-  Paper,
   List,
   ListItem,
   ListItemIcon,
-  ListItemText,
-  Divider,
-  Rating
+  ListItemText
 } from '@mui/material';
 import {
   SentimentSatisfiedAlt,
-  SentimentNeutral,
   SentimentVeryDissatisfied,
-  Assessment,
-  Timeline,
+  SentimentNeutral,
   CheckCircle,
-  Cancel,
-  TrendingUp,
-  TrendingDown,
-  Info
+  TrendingUp
 } from '@mui/icons-material';
-import { styled } from '@mui/material/styles';
 import personasData from '../data/personas.json';
 
-const StyledCard = styled(Card)(({ theme }) => ({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  transition: 'transform 0.2s ease-in-out',
-  '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: theme.shadows[4],
-  },
-}));
+// TabPanel component
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`feedback-tabpanel-${index}`}
+      aria-labelledby={`feedback-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          {children}
+        </Box>
+      )}
+    </div>
+  );
+}
 
 const DetailedFeedbackCard = ({ feedback, persona }) => (
-  <StyledCard>
+  <Card>
     <CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 2 }}>
-        {persona?.image ? (
-          <Avatar
-            src={persona.image}
-            sx={{ 
-              width: 60, 
-              height: 60, 
-              mr: 2,
-              border: '2px solid',
-              borderColor: 'primary.main'
-            }}
-            alt={persona.name}
-          />
-        ) : (
-          <Avatar sx={{ width: 60, height: 60, mr: 2 }}>{persona?.name[0]}</Avatar>
-        )}
-        <Box>
-          <Typography variant="h6">{persona?.name}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            {persona?.title} • {persona?.age} years
-          </Typography>
-          <Typography variant="caption" color="text.secondary" display="block">
-            {persona?.location}
-          </Typography>
-          <Box sx={{ mt: 0.5, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            <Chip 
-              label={persona?.technology_usage.adoption_of_technology}
-              size="small"
-              color="primary"
-              variant="outlined"
-            />
-            <Chip 
-              label={`${persona?.consumer_behavior.online_shopping_frequency} Shopper`}
-              size="small"
-              color="secondary"
-              variant="outlined"
-            />
-          </Box>
-        </Box>
-      </Box>
+      <Typography variant="h6" gutterBottom>
+        {persona?.name}'s Feedback
+      </Typography>
       
-      <Box sx={{ mb: 2, display: 'flex', gap: 1 }}>
-        <Chip 
-          icon={<Assessment />}
-          label={`${feedback.confidence}% Confidence`}
-          color="primary"
-          size="small"
-        />
-        <Chip 
-          icon={getSentimentIcon(feedback.sentiment)}
-          label={feedback.sentiment}
-          color={getSentimentColor(feedback.sentiment)}
-          size="small"
-        />
-      </Box>
-
-      <Divider sx={{ my: 2 }} />
-
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="subtitle2" color="primary" gutterBottom>
-          Key Points
-        </Typography>
-        <List dense>
-          {feedback.keyPoints?.map((point, index) => (
-            <ListItem key={index}>
-              <ListItemIcon>
-                <CheckCircle color="success" fontSize="small" />
-              </ListItemIcon>
-              <ListItemText primary={point} />
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="subtitle2" color="primary" gutterBottom>
-          Detailed Analysis
-        </Typography>
-        <Typography variant="body2" color="text.secondary" paragraph>
-          {feedback.analysis}
-        </Typography>
-      </Box>
-
-      {feedback.recommendations && (
-        <Box>
-          <Typography variant="subtitle2" color="primary" gutterBottom>
-            Recommendations
-          </Typography>
-          <List dense>
-            {feedback.recommendations.map((rec, index) => (
-              <ListItem key={index}>
-                <ListItemIcon>
-                  <Info color="info" fontSize="small" />
-                </ListItemIcon>
-                <ListItemText primary={rec} />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-      )}
-    </CardContent>
-  </StyledCard>
-);
-
-const QuickSummaryCard = ({ feedback, persona }) => (
-  <StyledCard>
-    <CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 2 }}>
-        {persona?.image ? (
-          <Avatar
-            src={persona.image}
-            sx={{ 
-              width: 60, 
-              height: 60, 
-              mr: 2,
-              border: '2px solid',
-              borderColor: 'primary.main'
-            }}
-            alt={persona.name}
-          />
-        ) : (
-          <Avatar sx={{ width: 60, height: 60, mr: 2 }}>{persona?.name[0]}</Avatar>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+        <Typography variant="subtitle1">Sentiment:</Typography>
+        {feedback.sentiment && (
+          <>
+            {renderSentimentIcon(feedback.sentiment)}
+            <Typography>{feedback.sentiment}</Typography>
+          </>
         )}
-        <Box>
-          <Typography variant="h6">{persona?.name}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            {persona?.title} • {persona?.age} years
-          </Typography>
-          <Typography variant="caption" color="text.secondary" display="block">
-            {persona?.location}
-          </Typography>
-          <Box sx={{ mt: 0.5, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            <Chip 
-              label={`${persona?.personality_traits.openness} Openness`}
-              size="small"
-              color="primary"
-              variant="outlined"
-            />
-            <Chip 
-              label={`${persona?.consumer_behavior.use_of_reviews} Reviews User`}
-              size="small"
-              color="secondary"
-              variant="outlined"
-            />
-          </Box>
-        </Box>
       </Box>
 
-      <Box sx={{ mb: 2, display: 'flex', gap: 1 }}>
-        <Chip 
-          icon={getSentimentIcon(feedback.sentiment)}
-          label={feedback.sentiment}
-          color={getSentimentColor(feedback.sentiment)}
-          size="small"
-        />
-      </Box>
+      <Typography variant="h6" gutterBottom>
+        Key Points
+      </Typography>
+      <List>
+        {feedback.keyPoints?.map((point, index) => (
+          <ListItem key={index}>
+            <ListItemIcon>
+              <CheckCircle color="primary" />
+            </ListItemIcon>
+            <ListItemText primary={point} />
+          </ListItem>
+        ))}
+      </List>
 
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="body1" paragraph>
-          {feedback.summary}
-        </Typography>
-      </Box>
+      <Typography variant="h6" gutterBottom>
+        Analysis
+      </Typography>
+      <Typography paragraph>
+        {feedback.analysis}
+      </Typography>
 
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Paper variant="outlined" sx={{ p: 2 }}>
-            <Typography variant="subtitle2" color="success.main" gutterBottom>
-              Pros
-            </Typography>
-            <List dense>
-              {feedback.pros?.map((pro, index) => (
-                <ListItem key={index}>
-                  <ListItemIcon>
-                    <TrendingUp color="success" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary={pro} />
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper variant="outlined" sx={{ p: 2 }}>
-            <Typography variant="subtitle2" color="error.main" gutterBottom>
-              Cons
-            </Typography>
-            <List dense>
-              {feedback.cons?.map((con, index) => (
-                <ListItem key={index}>
-                  <ListItemIcon>
-                    <TrendingDown color="error" fontSize="small" />
-                  </ListItemIcon>
-                  <ListItemText primary={con} />
-                </ListItem>
-              ))}
-            </List>
-          </Paper>
-        </Grid>
-      </Grid>
+      <Typography variant="h6" gutterBottom>
+        Recommendations
+      </Typography>
+      <List>
+        {feedback.recommendations?.map((rec, index) => (
+          <ListItem key={index}>
+            <ListItemIcon>
+              <TrendingUp color="primary" />
+            </ListItemIcon>
+            <ListItemText primary={rec} />
+          </ListItem>
+        ))}
+      </List>
     </CardContent>
-  </StyledCard>
+  </Card>
 );
 
-// Helper functions
-const getSentimentIcon = (sentiment) => {
+// Helper function to render sentiment icon
+const renderSentimentIcon = (sentiment) => {
   switch (sentiment?.toLowerCase()) {
     case 'positive':
-      return <SentimentSatisfiedAlt />;
+      return <SentimentSatisfiedAlt color="success" />;
     case 'negative':
-      return <SentimentVeryDissatisfied />;
+      return <SentimentVeryDissatisfied color="error" />;
     default:
-      return <SentimentNeutral />;
+      return <SentimentNeutral color="warning" />;
   }
 };
 
-const getSentimentColor = (sentiment) => {
-  switch (sentiment?.toLowerCase()) {
-    case 'positive':
-      return 'success';
-    case 'negative':
-      return 'error';
-    default:
-      return 'warning';
-  }
-};
-
-const OverallAnalysisContent = ({ analysis }) => {
-  const {
-    overallSentiment = 'neutral',
-    consensusPoints = [],
-    keyInsights = '',
-    marketPotential = '',
-    recommendedActions = []
-  } = analysis || {};
-
-  return (
-    <Box sx={{ mt: 2 }}>
-      <Card>
-        <CardContent>
-          <Box sx={{ mb: 3 }}>
-            <Typography variant="h6" gutterBottom>
-              Overall Sentiment
-            </Typography>
-            <Chip 
-              icon={getSentimentIcon(overallSentiment)}
-              label={overallSentiment}
-              color={getSentimentColor(overallSentiment)}
-            />
-          </Box>
-
-          {consensusPoints.length > 0 && (
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h6" gutterBottom>
-                Consensus Points
-              </Typography>
-              <List>
-                {consensusPoints.map((point, index) => (
-                  <ListItem key={index}>
-                    <ListItemIcon>
-                      <CheckCircle color="success" />
-                    </ListItemIcon>
-                    <ListItemText primary={point} />
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          )}
-
-          {keyInsights && (
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h6" gutterBottom>
-                Key Insights
-              </Typography>
-              <Typography variant="body1" paragraph>
-                {keyInsights}
-              </Typography>
-            </Box>
-          )}
-
-          {marketPotential && (
-            <Box sx={{ mb: 3 }}>
-              <Typography variant="h6" gutterBottom>
-                Market Potential
-              </Typography>
-              <Paper variant="outlined" sx={{ p: 2 }}>
-                <Typography variant="body1">
-                  {marketPotential}
-                </Typography>
-              </Paper>
-            </Box>
-          )}
-
-          {recommendedActions.length > 0 && (
-            <Box>
-              <Typography variant="h6" gutterBottom>
-                Recommended Actions
-              </Typography>
-              <List>
-                {recommendedActions.map((action, index) => (
-                  <ListItem key={index}>
-                    <ListItemIcon>
-                      <Timeline color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary={action} />
-                  </ListItem>
-                ))}
-              </List>
-            </Box>
-          )}
-        </CardContent>
-      </Card>
-    </Box>
-  );
-};
-
-// Main component
 const FeedbackTabs = ({ feedbackData, isLoading }) => {
-  const [tabValue, setTabValue] = useState(0);
-  
-  const { individualFeedback = {}, overallAnalysis = null } = feedbackData || {};
+  const [value, setValue] = useState(0);
 
-  if (isLoading) {
-    return (
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        minHeight: '400px' 
-      }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
+  // Extract individual responses and overall analysis
+  const responses = Array.isArray(feedbackData.responses) ? feedbackData.responses : [feedbackData.responses];
+  const overallAnalysis = feedbackData.overallAnalysis;
 
-  const hasData = Object.keys(individualFeedback).length > 0 || overallAnalysis;
-
-  if (!hasData) {
-    return (
-      <Box sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        minHeight: '400px',
-        p: 3 
-      }}>
-        <Typography color="text.secondary">
-          No feedback generated yet. Use the sidebar to generate feedback.
-        </Typography>
-      </Box>
-    );
-  }
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   return (
-    <Box sx={{ width: '100%', p: 3 }}>
-      <Tabs 
-        value={tabValue} 
-        onChange={(e, newValue) => setTabValue(newValue)}
-        sx={{ borderBottom: 1, borderColor: 'divider', mb: 2 }}
-      >
-        <Tab 
-          label="Individual Feedback" 
-          icon={<SentimentSatisfiedAlt />} 
-          iconPosition="start"
-        />
-        <Tab 
-          label="Overall Analysis" 
-          icon={<Assessment />} 
-          iconPosition="start"
-        />
+    <Box sx={{ width: '100%' }}>
+      <Tabs value={value} onChange={handleChange} centered>
+        <Tab label="Individual Feedback" />
+        <Tab label="Overall Analysis" />
       </Tabs>
 
-      {tabValue === 0 && (
-        <Grid container spacing={3} sx={{ mt: 2 }}>
-          {Object.entries(individualFeedback).map(([personaId, feedback]) => (
-            <Grid item xs={12} md={6} key={personaId}>
-              {feedback.responseType === 'detailed' ? (
+      <TabPanel value={value} index={0}>
+        {isLoading ? (
+          <LoadingState />
+        ) : responses && responses.length > 0 ? (
+          <Grid container spacing={3}>
+            {responses.map((feedback, index) => (
+              <Grid item xs={12} key={index}>
                 <DetailedFeedbackCard 
-                  feedback={feedback}
-                  persona={personasData.find(p => p.id === personaId)}
+                  feedback={feedback} 
+                  persona={personasData.find(p => p.id === feedback.personaId)}
                 />
-              ) : (
-                <QuickSummaryCard 
-                  feedback={feedback}
-                  persona={personasData.find(p => p.id === personaId)}
-                />
-              )}
-            </Grid>
-          ))}
-        </Grid>
-      )}
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <EmptyState />
+        )}
+      </TabPanel>
 
-      {tabValue === 1 && overallAnalysis && (
-        <OverallAnalysisContent analysis={overallAnalysis} />
-      )}
+      <TabPanel value={value} index={1}>
+        {isLoading ? (
+          <LoadingState />
+        ) : overallAnalysis ? (
+          <Box>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Overall Sentiment
+                </Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                  {renderSentimentIcon(overallAnalysis.overallSentiment)}
+                  <Typography>
+                    {overallAnalysis.overallSentiment || 'Neutral'}
+                  </Typography>
+                </Box>
+                
+                <Typography variant="h6" gutterBottom>
+                  Key Insights
+                </Typography>
+                <Typography paragraph>
+                  {overallAnalysis.keyInsights}
+                </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Market Potential
+                </Typography>
+                <Typography paragraph>
+                  {overallAnalysis.marketPotential}
+                </Typography>
+
+                <Typography variant="h6" gutterBottom>
+                  Consensus Points
+                </Typography>
+                <List>
+                  {overallAnalysis.consensusPoints?.map((point, index) => (
+                    <ListItem key={index}>
+                      <ListItemIcon>
+                        <CheckCircle color="success" />
+                      </ListItemIcon>
+                      <ListItemText primary={point} />
+                    </ListItem>
+                  ))}
+                </List>
+
+                <Typography variant="h6" gutterBottom>
+                  Recommended Actions
+                </Typography>
+                <List>
+                  {overallAnalysis.recommendedActions?.map((action, index) => (
+                    <ListItem key={index}>
+                      <ListItemIcon>
+                        <TrendingUp color="primary" />
+                      </ListItemIcon>
+                      <ListItemText primary={action} />
+                    </ListItem>
+                  ))}
+                </List>
+              </CardContent>
+            </Card>
+          </Box>
+        ) : (
+          <EmptyState />
+        )}
+      </TabPanel>
     </Box>
   );
 };
+
+// Helper component for empty state
+const EmptyState = () => (
+  <Box sx={{ textAlign: 'center', py: 4 }}>
+    <Typography color="text.secondary">
+      No feedback generated yet. Try analyzing your concept with some digital twins!
+    </Typography>
+  </Box>
+);
+
+// Helper component for loading state
+const LoadingState = () => (
+  <Box sx={{ textAlign: 'center', py: 4 }}>
+    <CircularProgress />
+    <Typography color="text.secondary" sx={{ mt: 2 }}>
+      Generating feedback...
+    </Typography>
+  </Box>
+);
 
 export default FeedbackTabs;
