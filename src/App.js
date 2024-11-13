@@ -56,18 +56,20 @@ function App() {
     <Router>
       <ErrorBoundary>
         <MainLayout onGenerate={handleGenerate} isLoading={isLoading} feedbackData={feedbackData}>
-          <Routes>
-            <Route path="/" element={<AboutPage />} />
-            <Route path="/personas" element={<PersonasPage />} />
-            <Route path="/research-lab" element={
-              <ResearchLabPage 
-                onGenerate={handleGenerate}
-                isLoading={isLoading}
-                feedbackData={feedbackData}
-              />
-            } />
-            <Route path="/use-cases" element={<UseCasesPage />} />
-          </Routes>
+          <main>
+            <Routes>
+              <Route path="/" element={<AboutPage />} />
+              <Route path="/personas" element={<PersonasPage />} />
+              <Route path="/research-lab" element={
+                <ResearchLabPage 
+                  onGenerate={handleGenerate}
+                  isLoading={isLoading}
+                  feedbackData={feedbackData}
+                />
+              } />
+              <Route path="/use-cases" element={<UseCasesPage />} />
+            </Routes>
+          </main>
         </MainLayout>
       </ErrorBoundary>
     </Router>
