@@ -11,10 +11,10 @@ import MainLayout from './components/MainLayout';
 import AboutPage from './pages/AboutPage';
 import PersonasPage from './pages/PersonasPage';
 import ResearchLabPage from './pages/ResearchLabPage';
+import UseCasesPage from './pages/UseCasesPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import personasData from './data/personas.json';
 import { generateDigitalTwinFeedback, generateOverallAnalysis } from './services/openai';
-import UseCasesPage from './pages/UseCasesPage';
 
 console.log('Personas data:', personasData); 
 
@@ -72,7 +72,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/">
       <MainLayout onGenerate={handleGenerate} isLoading={isLoading} feedbackData={feedbackData} overallAnalysis={feedbackData.overallAnalysis}>
         <ErrorBoundary>
           <Routes>
