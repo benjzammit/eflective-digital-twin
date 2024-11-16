@@ -12,54 +12,32 @@ const openai = new OpenAI({
 
 const createPersonaContext = (persona) => {
   return `
-Background:
-- Name: ${persona.name} (${persona.age} years old)
-- Title: ${persona.title}
-- Location: ${persona.location}
-- Occupation: ${persona.occupation}
-- Education: ${persona.education}
-- Income: ${persona.income}
+${persona.name} is a ${persona.age}-year-old ${persona.occupation} based in ${persona.location}. ${persona.description}
 
-Personality & Values:
-- Personality: ${Object.entries(persona.personality_traits)
-    .map(([trait, level]) => `${trait}: ${level}`)
-    .join(', ')}
-- Values: ${persona.values_and_beliefs.value_priorities.join(', ')}
-- Environmental Concern: ${persona.values_and_beliefs.environmental_concern}/5
-- Social Responsibility: ${persona.values_and_beliefs.social_responsibility}
+They have a ${persona.education} and earn an income of ${persona.income}. Their personality traits include ${Object.entries(persona.personality_traits)
+    .map(([trait, level]) => `${trait.toLowerCase()} (${level.toLowerCase()})`)
+    .join(', ')}.
 
-Consumer Behavior:
-- Shopping Preferences: ${persona.consumer_behavior.shopping_preferences.join(', ')}
-- Purchase Factors:
-  * Price: ${persona.consumer_behavior.purchase_factors.price}/5
-  * Quality: ${persona.consumer_behavior.purchase_factors.quality}/5
-  * Brand Reputation: ${persona.consumer_behavior.purchase_factors.brand_reputation}/5
-  * Sustainability: ${persona.consumer_behavior.purchase_factors.sustainability}/5
-  * Customer Service: ${persona.consumer_behavior.purchase_factors.customer_service}/5
-- Online Shopping: ${persona.consumer_behavior.online_shopping_frequency}
+They value ${persona.values_and_beliefs.value_priorities.join(', ')}, and their environmental concern is rated at ${persona.values_and_beliefs.environmental_concern} out of 5. Social responsibility is important to them: ${persona.values_and_beliefs.social_responsibility}.
 
-Technology Usage:
-- Adoption Level: ${persona.technology_usage.adoption_of_technology}
-- Devices: ${persona.technology_usage.devices_owned.join(', ')}
-- Internet Usage: ${persona.technology_usage.internet_usage_hours} daily
-- Activities: ${persona.technology_usage.primary_online_activities.join(', ')}
+In terms of consumer behavior, they prefer shopping at ${persona.consumer_behavior.shopping_preferences.join(', ')}. When making purchases, they consider factors such as price (${persona.consumer_behavior.purchase_factors.price}/5), quality (${persona.consumer_behavior.purchase_factors.quality}/5), brand reputation (${persona.consumer_behavior.purchase_factors.brand_reputation}/5), sustainability (${persona.consumer_behavior.purchase_factors.sustainability}/5), and customer service (${persona.consumer_behavior.purchase_factors.customer_service}/5). They shop online ${persona.consumer_behavior.online_shopping_frequency}.
 
-Additional Insights:
-- Communication Style: ${persona.communication_style.preferred_channels.join(', ')}
-- Decision Making: ${persona.behavioral_patterns.decision_making_style}
-- Brand Loyalty: ${persona.behavioral_patterns.brand_loyalty}
-`;
+They use technology extensively, owning devices like ${persona.technology_usage.devices_owned.join(', ')} and spending about ${persona.technology_usage.internet_usage_hours} hours online daily, primarily for ${persona.technology_usage.primary_online_activities.join(', ')}.
+
+Additional insights: ${persona.additional_insights.exceptional_experience}. They believe that ${persona.additional_insights.improvement_suggestions}
+  `;
 };
 
 const DETAILED_PROMPT_TEMPLATE = (persona, feedbackContent) => `
-You are ${persona.name}, analyzing the following concept based on your detailed persona:
+As ${persona.name}, please analyze the following concept based on your persona:
 
 ${createPersonaContext(persona)}
 
-Analyze this concept:
+Concept to analyze:
 "${feedbackContent}"
 
-Provide a detailed analysis in the following JSON structure:
+Provide a detailed analysis from your perspective, including specific references to brands, numbers, or locations relevant to you. Your response should be in the following JSON format:
+
 {
   "sentiment": "positive/neutral/negative",
   "confidence": <number between 0-100>,
@@ -77,17 +55,19 @@ Provide a detailed analysis in the following JSON structure:
   "responseType": "detailed"
 }
 
-Ensure your analysis reflects your persona's characteristics, values, and behavior patterns.`;
+Ensure that your analysis reflects your persona's characteristics, values, and behavior patterns, and includes specific details such as brand names, numbers, or locations that are relevant to you.
+`;
 
 const QUICK_SUMMARY_PROMPT_TEMPLATE = (persona, feedbackContent) => `
-You are ${persona.name}, providing a quick reaction to the following concept based on your persona:
+As ${persona.name}, please provide a quick reaction to the following concept based on your persona:
 
 ${createPersonaContext(persona)}
 
-Quick analysis of:
+Concept:
 "${feedbackContent}"
 
-Respond in the following JSON structure:
+Respond in the following JSON format:
+
 {
   "sentiment": "positive/neutral/negative",
   "summary": "<1-2 sentence summary of your reaction>",
@@ -103,7 +83,8 @@ Respond in the following JSON structure:
   "responseType": "quick"
 }
 
-Ensure your response reflects your persona's characteristics, values, and behavior patterns.`;
+Ensure that your response reflects your persona's characteristics, values, and behavior patterns, and includes specific details such as brand names, numbers, or locations that are relevant to you.
+`;
 
 export const generateDigitalTwinFeedback = async (feedbackContent, persona, responseType) => {
   try {
@@ -133,7 +114,7 @@ export const generateDigitalTwinFeedback = async (feedbackContent, persona, resp
       messages: [
         {
           role: "system",
-          content: "You are an AI that provides feedback from the perspective of specific personas. Always maintain the persona's viewpoint and characteristics in your analysis. Ensure your response is in valid JSON format."
+          content: "You are an AI that simulates specific personas and provides feedback from their perspective. Fully embody the persona, and respond as they would, including their mannerisms and preferences. Always ensure that your response is in valid JSON format as specified."
         },
         {
           role: "user",
@@ -179,18 +160,18 @@ export const generateOverallAnalysis = async (responses) => {
         {
           role: "system",
           content: `You are an AI that analyzes multiple pieces of feedback and provides an overall analysis. 
-          Your response must be in the following JSON format:
-          {
-            "overallSentiment": "positive/negative/neutral",
-            "keyInsights": "A detailed paragraph summarizing key insights from all feedback",
-            "marketPotential": "A detailed assessment of market potential based on the feedback",
-            "consensusPoints": ["point1", "point2", "point3"],
-            "recommendedActions": ["action1", "action2", "action3"]
-          }`
+Your response must be in the following JSON format:
+{
+  "overallSentiment": "positive/negative/neutral",
+  "keyInsights": "A detailed paragraph summarizing key insights from all feedback",
+  "marketPotential": "A detailed assessment of market potential based on the feedback",
+  "consensusPoints": ["point1", "point2", "point3"],
+  "recommendedActions": ["action1", "action2", "action3"]
+}`
         },
         {
           role: "user",
-          content: `Please analyze these different perspectives and provide a comprehensive overall analysis that includes sentiment analysis, key insights, market potential, points of consensus, and recommended actions:\n\n${feedbackSummary}`
+          content: `Please analyze these different perspectives and provide a comprehensive overall analysis that includes sentiment analysis, key insights, market potential, points of consensus, and recommended actions. Include specific details such as brand names, numbers, or locations where relevant:\n\n${feedbackSummary}`
         }
       ],
       temperature: 0.7,
