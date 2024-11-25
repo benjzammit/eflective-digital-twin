@@ -48,7 +48,6 @@ const SidebarCard = styled(Card)(({ theme }) => ({
 
 const Sidebar = ({ onGenerate, isLoading, width }) => {
   const [feedbackContent, setFeedbackContent] = useState('');
-  const [responseType, setResponseType] = useState('detailed');
   const [selectedPersonas, setSelectedPersonas] = useState([]);
 
   const handleSubmit = (e) => {
@@ -59,7 +58,6 @@ const Sidebar = ({ onGenerate, isLoading, width }) => {
     }
     onGenerate({
       feedbackContent,
-      responseType,
       selectedPersonas
     });
   };
@@ -101,39 +99,6 @@ const Sidebar = ({ onGenerate, isLoading, width }) => {
               }}
             />
 
-            <FormControl fullWidth>
-              <InputLabel>Response Type</InputLabel>
-              <Select
-                value={responseType}
-                onChange={(e) => setResponseType(e.target.value)}
-                label="Response Type"
-              >
-                <MenuItem value="detailed">
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <InsightsIcon fontSize="small" />
-                    <Box>
-                      <Typography variant="body2">Detailed Analysis</Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        Comprehensive feedback with recommendations
-                      </Typography>
-                    </Box>
-                  </Box>
-                </MenuItem>
-                <MenuItem value="summary">
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <AssessmentIcon fontSize="small" />
-                    <Box>
-                      <Typography variant="body2">Quick Summary</Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        Concise overview with pros and cons
-                      </Typography>
-                    </Box>
-                  </Box>
-                </MenuItem>
-              </Select>
-            </FormControl>
-
-            {/* Example of selecting personas */}
             <FormControl fullWidth>
               <InputLabel>Select Personas</InputLabel>
               <Select

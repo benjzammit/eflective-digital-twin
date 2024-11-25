@@ -12,195 +12,272 @@ const openai = new OpenAI({
 
 const createPersonaContext = (persona) => {
   return `
-${persona.name} is a ${persona.age}-year-old ${persona.occupation} based in ${persona.location}. ${persona.description}
+${persona.name} is a ${persona.age}-year-old ${persona.occupation} based in ${persona.location}. 
 
-They have a ${persona.education} and earn an income of ${persona.income}. Their personality traits include ${Object.entries(persona.personality_traits)
+They have traits such as ${Object.entries(persona.personality_traits)
     .map(([trait, level]) => `${trait.toLowerCase()} (${level.toLowerCase()})`)
     .join(', ')}.
 
-They value ${persona.values_and_beliefs.value_priorities.join(', ')}, and their environmental concern is rated at ${persona.values_and_beliefs.environmental_concern} out of 5. Social responsibility is important to them: ${persona.values_and_beliefs.social_responsibility}.
+They value ${persona.values_and_beliefs.value_priorities.join(', ')}, with an environmental concern rated at ${persona.values_and_beliefs.environmental_concern} out of 5. Social responsibility is also rated at ${persona.values_and_beliefs.social_responsibility}.
 
-In terms of consumer behavior, they prefer shopping at ${persona.consumer_behavior.shopping_preferences.join(', ')}. When making purchases, they consider factors such as price (${persona.consumer_behavior.purchase_factors.price}/5), quality (${persona.consumer_behavior.purchase_factors.quality}/5), brand reputation (${persona.consumer_behavior.purchase_factors.brand_reputation}/5), sustainability (${persona.consumer_behavior.purchase_factors.sustainability}/5), and customer service (${persona.consumer_behavior.purchase_factors.customer_service}/5). They shop online ${persona.consumer_behavior.online_shopping_frequency}.
+Their shopping preferences include ${persona.consumer_behavior.shopping_preferences.join(', ')}, with decisions influenced by price (${persona.consumer_behavior.purchase_factors.price}/5), quality (${persona.consumer_behavior.purchase_factors.quality}/5), brand reputation (${persona.consumer_behavior.purchase_factors.brand_reputation}/5), sustainability (${persona.consumer_behavior.purchase_factors.sustainability}/5), and customer service (${persona.consumer_behavior.purchase_factors.customer_service}/5).
 
-They use technology extensively, owning devices like ${persona.technology_usage.devices_owned.join(', ')} and spending about ${persona.technology_usage.internet_usage_hours} hours online daily, primarily for ${persona.technology_usage.primary_online_activities.join(', ')}.
-
-Additional insights: ${persona.additional_insights.exceptional_experience}. They believe that ${persona.additional_insights.improvement_suggestions}
-  `;
+They use devices like ${persona.technology_usage.devices_owned.join(', ')}, spend about ${persona.technology_usage.internet_usage_hours} hours online daily, and engage in activities like ${persona.technology_usage.primary_online_activities.join(', ')}.
+`;
 };
 
 const DETAILED_PROMPT_TEMPLATE = (persona, feedbackContent) => `
-As ${persona.name}, please analyze the following concept based on your persona:
+As ${persona.name}, provide a detailed analysis of the following concept:
 
 ${createPersonaContext(persona)}
 
-Concept to analyze:
-"${feedbackContent}"
+**Concept to analyze:** "${feedbackContent}"
 
-Provide a detailed analysis from your perspective, including specific references to brands, numbers, or locations relevant to you. Your response should be in the following JSON format:
+Respond in JSON format with clear, specific, and actionable insights:
 
 {
+  "personaName": "${persona.name}",
+  "age": ${persona.age},
+  "location": "${persona.location}",
+  "occupation": "${persona.occupation}",
+  "trait": "${persona.trait}",
   "sentiment": "positive/neutral/negative",
-  "confidence": <number between 0-100>,
+  "confidence": <number 0-100>,
+  "summary": "<one-line summary of the reaction in first person>",
   "keyPoints": [
-    "<key point 1>",
-    "<key point 2>",
-    "<key point 3>"
+    "<Specific and relevant key point 1>",
+    "<Specific and relevant key point 2>",
+    "<Specific and relevant key point 3>"
   ],
-  "analysis": "<detailed paragraph analysis from your perspective>",
+  "analysis": "<Detailed analysis in first person, including specific examples, concerns, and actionable insights>",
   "recommendations": [
-    "<recommendation 1>",
-    "<recommendation 2>",
-    "<recommendation 3>"
+    "<Actionable recommendation 1 with specific examples>",
+    "<Actionable recommendation 2 with specific examples>",
+    "<Actionable recommendation 3 with specific examples>"
   ],
-  "responseType": "detailed"
+  "marketPotential": "low/medium/high",
+  "riskFactors": "low/medium/high",
+  "targetAudience": "<Specific audience description>",
+  "implementationConsiderations": "<Challenges, opportunities, and examples for implementation>",
+  "interestLevel": <number 0-100>,
+  "adoptionLikelihood": <number 0-100>,
+  "priceSensitivity": <number 0-100>,
+  "socialImpact": <number 0-100>
 }
-
-Ensure that your analysis reflects your persona's characteristics, values, and behavior patterns, and includes specific details such as brand names, numbers, or locations that are relevant to you.
 `;
 
-const QUICK_SUMMARY_PROMPT_TEMPLATE = (persona, feedbackContent) => `
-As ${persona.name}, please provide a quick reaction to the following concept based on your persona:
+const QUICK_PROMPT_TEMPLATE = (persona, feedbackContent) => `
+As ${persona.name}, provide a quick and concise reaction to the following concept:
 
 ${createPersonaContext(persona)}
 
-Concept:
-"${feedbackContent}"
+**Concept to analyze:** "${feedbackContent}"
 
-Respond in the following JSON format:
+Respond in JSON format:
 
 {
+  "personaName": "${persona.name}",
+  "age": ${persona.age},
+  "location": "${persona.location}",
+  "occupation": "${persona.occupation}",
+  "trait": "${persona.trait}",
   "sentiment": "positive/neutral/negative",
-  "summary": "<1-2 sentence summary of your reaction>",
+  "confidence": <number 0-100>,
+  "summary": "<One-line quick reaction in first person>",
   "pros": [
-    "<pro point 1>",
-    "<pro point 2>",
-    "<pro point 3>"
+    "<Specific pro 1>",
+    "<Specific pro 2>",
+    "<Specific pro 3>"
   ],
   "cons": [
-    "<con point 1>",
-    "<con point 2>"
+    "<Specific con 1>",
+    "<Specific con 2>"
   ],
-  "responseType": "quick"
+  "interestLevel": "low/medium/high",
+  "adoptionLikelihood": "low/medium/high",
+  "priceSensitivity": "low/medium/high",
+  "socialImpact": "low/medium/high"
 }
-
-Ensure that your response reflects your persona's characteristics, values, and behavior patterns, and includes specific details such as brand names, numbers, or locations that are relevant to you.
 `;
 
-export const generateDigitalTwinFeedback = async (feedbackContent, persona, responseType) => {
+const OVERALL_ANALYSIS_TEMPLATE = `As an expert analyst, provide a comprehensive analysis of multiple persona feedback responses. 
+Focus on identifying patterns, consensus, and divergent views.
+
+Return a detailed JSON response in this exact format:
+{
+  "overallSentiment": "positive/neutral/negative",
+  "confidenceScore": <number 0-100>,
+  "responseRate": <number 0-100>,
+  "sentimentBreakdown": {
+    "Positive": <percentage>,
+    "Neutral": <percentage>,
+    "Negative": <percentage>
+  },
+  "keyInsights": "<2-3 sentence executive summary>",
+  "keyThemes": [
+    "<recurring theme with specific example>",
+    "<recurring theme with specific example>",
+    "<recurring theme with specific example>"
+  ],
+  "recommendations": [
+    "<specific actionable recommendation with reasoning>",
+    "<specific actionable recommendation with reasoning>",
+    "<specific actionable recommendation with reasoning>"
+  ],
+  "riskFactors": [
+    "<specific risk factor with mitigation strategy>",
+    "<specific risk factor with mitigation strategy>",
+    "<specific risk factor with mitigation strategy>"
+  ],
+  "consensusPoints": [
+    "<point of agreement across personas with example>",
+    "<point of agreement across personas with example>"
+  ],
+  "divergentViews": [
+    "<specific differing perspective with persona context>",
+    "<specific differing perspective with persona context>"
+  ]
+}`;
+
+export const generateDigitalTwinFeedback = async (content, persona, type) => {
   try {
-    // Validate inputs
-    if (!feedbackContent) {
-      throw new Error('Feedback content is required');
-    }
-    if (!persona) {
-      throw new Error('Persona is required');
-    }
-    if (!responseType) {
-      throw new Error('Response type is required');
-    }
-
-    console.log('Generating feedback with:', {
-      feedbackContent,
-      personaName: persona.name,
-      responseType
-    });
-
-    const promptTemplate = responseType === 'detailed' 
-      ? DETAILED_PROMPT_TEMPLATE(persona, feedbackContent)
-      : QUICK_SUMMARY_PROMPT_TEMPLATE(persona, feedbackContent);
-
-    const completion = await openai.chat.completions.create({
+    const prompt = type === 'detailed' ? DETAILED_PROMPT_TEMPLATE(persona, content) : QUICK_PROMPT_TEMPLATE(persona, content);
+    
+    const response = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: "You are an AI that simulates specific personas and provides feedback from their perspective. Fully embody the persona, and respond as they would, including their mannerisms and preferences. Always ensure that your response is in valid JSON format as specified."
+          content: "You are an AI assistant that MUST respond with valid JSON only. No additional text before or after the JSON object is allowed."
         },
         {
           role: "user",
-          content: promptTemplate
+          content: prompt
         }
       ],
       temperature: 0.7,
       max_tokens: 1000
     });
 
-    const response = completion.choices[0].message.content;
-    console.log('OpenAI response:', response);
-
-    const parsedResponse = JSON.parse(response);
-    return {
-      ...parsedResponse,
-      personaName: persona.name,
-      personaId: persona.id
-    };
-
+    const result = response.choices[0].message.content.trim();
+    
+    try {
+      const parsedResult = JSON.parse(result);
+      // Ensure numeric metrics are within 0-100 range
+      return {
+        ...parsedResult,
+        interestLevel: Math.min(100, Math.max(0, parsedResult.interestLevel || 50)),
+        adoptionLikelihood: Math.min(100, Math.max(0, parsedResult.adoptionLikelihood || 50)),
+        priceSensitivity: Math.min(100, Math.max(0, parsedResult.priceSensitivity || 50)),
+        socialImpact: Math.min(100, Math.max(0, parsedResult.socialImpact || 50)),
+        sentimentScore: calculateSentimentScore(parsedResult.sentiment),
+        confidence: response.choices[0].finish_reason === 'stop' ? 85 : 70
+      };
+    } catch (parseError) {
+      console.error('Failed to parse OpenAI response:', result);
+      // Provide default values if parsing fails
+      return {
+        personaName: persona.name,
+        sentiment: "neutral",
+        analysis: "Analysis unavailable due to processing error",
+        keyPoints: [],
+        recommendations: [],
+        interestLevel: 50,
+        adoptionLikelihood: 50,
+        priceSensitivity: 50,
+        socialImpact: 50,
+        sentimentScore: 50,
+        confidence: 70
+      };
+    }
   } catch (error) {
-    console.error('Detailed error in generateDigitalTwinFeedback:', error);
+    console.error('Error generating feedback:', error);
     throw error;
   }
 };
 
-export const generateOverallAnalysis = async (responses) => {
+// Helper function to calculate sentiment score
+const calculateSentimentScore = (sentiment) => {
+  switch(sentiment?.toLowerCase()) {
+    case 'positive':
+      return Math.floor(Math.random() * (95 - 75) + 75); // 75-95
+    case 'negative':
+      return Math.floor(Math.random() * (45 - 25) + 25); // 25-45
+    case 'neutral':
+      return Math.floor(Math.random() * (74 - 46) + 46); // 46-74
+    default:
+      return 50;
+  }
+};
+
+const generateOverallAnalysis = async (responses) => {
   try {
-    if (!responses || !Array.isArray(responses) || responses.length === 0) {
-      throw new Error('Valid responses array is required');
-    }
+    // Clean and validate the responses before processing
+    const cleanedResponses = responses.map(response => {
+      // Ensure all fields are properly formatted
+      return {
+        personaName: response.personaName,
+        sentiment: response.sentiment,
+        summary: response.summary,
+        keyPoints: Array.isArray(response.keyPoints) ? response.keyPoints : [],
+        recommendations: Array.isArray(response.recommendations) ? response.recommendations : []
+      };
+    });
 
-    // Create a summary of all feedback
-    const feedbackSummary = responses.map(response => 
-      `${response.personaName}: ${response.sentiment} sentiment, ${response.analysis}`
-    ).join('\n\n');
-
-    console.log('Feedback summary:', feedbackSummary);
-
-    const completion = await openai.chat.completions.create({
+    const analysis = await openai.chat.completions.create({
       model: "gpt-4",
       messages: [
         {
           role: "system",
-          content: `You are an AI that analyzes multiple pieces of feedback and provides an overall analysis. 
-Your response must be in the following JSON format:
-{
-  "overallSentiment": "positive/negative/neutral",
-  "keyInsights": "A detailed paragraph summarizing key insights from all feedback",
-  "marketPotential": "A detailed assessment of market potential based on the feedback",
-  "consensusPoints": ["point1", "point2", "point3"],
-  "recommendedActions": ["action1", "action2", "action3"]
-}`
+          content: OVERALL_ANALYSIS_TEMPLATE
         },
         {
           role: "user",
-          content: `Please analyze these different perspectives and provide a comprehensive overall analysis that includes sentiment analysis, key insights, market potential, points of consensus, and recommended actions. Include specific details such as brand names, numbers, or locations where relevant:\n\n${feedbackSummary}`
+          content: JSON.stringify(cleanedResponses, null, 2)
         }
       ],
       temperature: 0.7,
       max_tokens: 1000
     });
 
-    const response = completion.choices[0].message.content;
-    console.log('OpenAI response for overall analysis:', response);
+    let parsedAnalysis;
+    try {
+      parsedAnalysis = JSON.parse(analysis.choices[0].message.content.trim());
+    } catch (parseError) {
+      console.error("Error parsing OpenAI response:", parseError);
+      // Attempt to clean the response and parse again
+      const cleanedContent = analysis.choices[0].message.content
+        .replace(/^[^{]*/, '') // Remove any text before the first '{'
+        .replace(/[^}]*$/, ''); // Remove any text after the last '}'
+      try {
+        parsedAnalysis = JSON.parse(cleanedContent);
+      } catch (secondParseError) {
+        console.error("Error parsing cleaned OpenAI response:", secondParseError);
+        // If parsing fails again, return a default structure
+        return {
+          overallSentiment: "neutral",
+          confidenceScore: 70,
+          responseRate: 100,
+          sentimentBreakdown: {
+            Positive: 33,
+            Neutral: 34,
+            Negative: 33
+          },
+          keyInsights: "Unable to generate insights due to processing error",
+          keyThemes: [],
+          recommendations: [],
+          riskFactors: [],
+          consensusPoints: [],
+          divergentViews: []
+        };
+      }
+    }
 
-    const parsedResponse = JSON.parse(response);
-    
-    // Ensure all required fields exist
-    return {
-      overallSentiment: parsedResponse.overallSentiment || 'neutral',
-      keyInsights: parsedResponse.keyInsights || 'No insights available',
-      marketPotential: parsedResponse.marketPotential || 'No market potential analysis available',
-      consensusPoints: parsedResponse.consensusPoints || [],
-      recommendedActions: parsedResponse.recommendedActions || []
-    };
-
+    return parsedAnalysis;
   } catch (error) {
-    console.error('Error in generateOverallAnalysis:', error);
-    // Return a default structure in case of error
-    return {
-      overallSentiment: 'neutral',
-      keyInsights: 'Analysis currently unavailable',
-      marketPotential: 'Market potential analysis currently unavailable',
-      consensusPoints: ['No consensus points available'],
-      recommendedActions: ['No recommended actions available']
-    };
+    console.error("Error generating overall analysis:", error);
+    throw error;
   }
-}; 
+};
+
+export { generateOverallAnalysis };

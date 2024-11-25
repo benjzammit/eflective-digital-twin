@@ -15,36 +15,68 @@ console.log('Personas data:', personasData);
 function App() {
   const [feedbackData, setFeedbackData] = useState({
     responses: [],
-    overallAnalysis: ''
+    overallAnalysis: {
+      overallSentiment: '',
+      confidenceScore: 0,
+      responseRate: 0,
+      sentimentBreakdown: {},
+      keyInsights: '',
+      keyThemes: [],
+      recommendations: [],
+      riskFactors: [],
+      consensusPoints: [],
+      divergentViews: []
+    }
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleGenerate = async ({ feedbackContent, responseType, selectedPersonas }) => {
+  const handleGenerate = async ({ feedbackContent, selectedPersonas }) => {
     setIsLoading(true);
+    setFeedbackData({ responses: [], overallAnalysis: {
+      overallSentiment: '',
+      confidenceScore: 0,
+      responseRate: 0,
+      sentimentBreakdown: {},
+      keyInsights: '',
+      keyThemes: [],
+      recommendations: [],
+      riskFactors: [],
+      consensusPoints: [],
+      divergentViews: []
+    } });
+
     try {
-      // Get all selected personas' full data
       const selectedPersonasData = selectedPersonas.map(id => 
         personasData.find(p => p.id === id)
       ).filter(Boolean);
       
+      console.log('Selected Personas:', selectedPersonasData);
+
       if (selectedPersonasData.length === 0) {
         throw new Error('Please select at least one persona');
       }
 
-      // Generate feedback for each selected persona
-      const responses = await Promise.all(
-        selectedPersonasData.map(persona => 
-          generateDigitalTwinFeedback(feedbackContent, persona, responseType)
-        )
+      const allResponses = await Promise.all(
+        selectedPersonasData.map(async persona => {
+          const detailed = await generateDigitalTwinFeedback(feedbackContent, persona, 'detailed');
+          
+          return {
+            detailed: { ...detailed, persona: persona }
+          };
+        })
       );
       
-      // Generate overall analysis with all responses
-      const analysis = await generateOverallAnalysis(responses);
+      console.log('All Responses:', allResponses);
+
+      const analysis = await generateOverallAnalysis(
+        allResponses.map(r => r.detailed)
+      );
       
       setFeedbackData({
-        responses,
+        responses: allResponses,
         overallAnalysis: analysis
       });
+
     } catch (error) {
       console.error('Error:', error);
     } finally {

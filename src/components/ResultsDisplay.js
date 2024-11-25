@@ -1,157 +1,92 @@
 import React from 'react';
 import {
   Box,
-  Paper,
-  Typography,
-  CircularProgress,
-  Tabs,
-  Tab,
+  Stack,
+  Button,
   Card,
   CardContent,
+  Typography,
+  Avatar,
   Chip,
-  Fade,
-  Button,
-  Skeleton
+  Grid
 } from '@mui/material';
 import {
-  Analytics as AnalyticsIcon,
-  Insights as InsightsIcon
+  Dashboard,
+  Analytics,
+  Lightbulb,
+  TrendingUp,
+  Launch,
+  AttachMoney
 } from '@mui/icons-material';
+import SummaryView from './views/SummaryView';
+import DetailedView from './views/DetailedView';
+import InsightsView from './views/InsightsView';
 
-const PersonaLoadingSkeleton = () => (
-  <Card sx={{ mb: 2 }}>
-    <CardContent>
-      <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
-        <Skeleton variant="circular" width={60} height={60} />
-        <Box sx={{ flex: 1 }}>
-          <Skeleton variant="text" width="40%" />
-          <Skeleton variant="text" width="60%" />
-        </Box>
-      </Box>
-      <Skeleton variant="rectangular" height={100} />
-      <Box sx={{ mt: 2 }}>
-        <Skeleton variant="text" width="80%" />
-        <Skeleton variant="text" width="70%" />
-      </Box>
-    </CardContent>
-  </Card>
-);
-
-const ResultsDisplay = ({ feedbackData, overallAnalysis, isLoading }) => {
-  const [tabValue, setTabValue] = React.useState(0);
-
+const ModernResultsLayout = ({ feedbackData, isLoading }) => {
+  const [activeView, setActiveView] = React.useState('summary');
+  
   return (
-    <Fade in={true}>
-      <Box>
-        <Paper 
-          elevation={0}
-          sx={{ 
-            mb: 3, 
-            borderRadius: 2,
-            overflow: 'hidden',
-            border: '1px solid',
-            borderColor: 'divider'
-          }}
-        >
-          <Tabs 
-            value={tabValue} 
-            onChange={(e, newValue) => setTabValue(newValue)}
-            sx={{ 
-              px: 2, 
-              pt: 2,
-              borderBottom: '1px solid',
-              borderColor: 'divider',
-              '& .MuiTab-root': {
-                minHeight: 48,
-                textTransform: 'none',
-                fontSize: '1rem'
-              }
-            }}
-          >
-            <Tab 
-              icon={<AnalyticsIcon sx={{ mr: 1 }} />} 
-              label="Analysis Results" 
-              iconPosition="start"
-            />
-            <Tab 
-              icon={<InsightsIcon sx={{ mr: 1 }} />} 
-              label="Overall Insights" 
-              iconPosition="start"
-            />
-          </Tabs>
+    <Box sx={{ width: '100%' }}>
+      <Stack 
+        direction="row" 
+        spacing={2} 
+        sx={{ 
+          mb: 4,
+          borderBottom: 1,
+          borderColor: 'divider',
+          pb: 1
+        }}
+      >
+        <TabButton
+          active={activeView === 'summary'}
+          onClick={() => setActiveView('summary')}
+          icon={<Dashboard />}
+          label="Summary View"
+        />
+        <TabButton
+          active={activeView === 'detailed'}
+          onClick={() => setActiveView('detailed')}
+          icon={<Analytics />}
+          label="Detailed Analysis"
+        />
+        <TabButton
+          active={activeView === 'insights'}
+          onClick={() => setActiveView('insights')}
+          icon={<Lightbulb />}
+          label="Key Insights"
+        />
+      </Stack>
 
-          <Box sx={{ p: 3 }}>
-            {tabValue === 0 && (
-              <Box>
-                {isLoading ? (
-                  <>
-                    <PersonaLoadingSkeleton />
-                    <PersonaLoadingSkeleton />
-                    <PersonaLoadingSkeleton />
-                  </>
-                ) : (
-                  <>
-                    {feedbackData?.map((feedback, index) => (
-                      <Card 
-                        key={index} 
-                        elevation={0}
-                        sx={{ 
-                          mb: 2,
-                          border: '1px solid',
-                          borderColor: 'divider',
-                          '&:last-child': {
-                            mb: 0
-                          }
-                        }}
-                      >
-                        <CardContent>
-                          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-                            <Chip 
-                              label={`Feedback ${index + 1}`} 
-                              size="small" 
-                              color="primary" 
-                              variant="outlined"
-                            />
-                            <Typography variant="body1">
-                              {feedback}
-                            </Typography>
-                          </Box>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </>
-                )}
-              </Box>
-            )}
-
-            {tabValue === 1 && (
-              <Card 
-                elevation={0}
-                sx={{ 
-                  border: '1px solid',
-                  borderColor: 'divider'
-                }}
-              >
-                <CardContent>
-                  {isLoading ? (
-                    <>
-                      <Skeleton variant="text" width="90%" />
-                      <Skeleton variant="text" width="85%" />
-                      <Skeleton variant="text" width="80%" />
-                    </>
-                  ) : (
-                    <Typography variant="body1">
-                      {overallAnalysis || 'No analysis available yet.'}
-                    </Typography>
-                  )}
-                </CardContent>
-              </Card>
-            )}
-          </Box>
-        </Paper>
+      <Box sx={{ minHeight: 400 }}>
+        {activeView === 'summary' && (
+          <SummaryView data={feedbackData} isLoading={isLoading} />
+        )}
+        {activeView === 'detailed' && (
+          <DetailedView data={feedbackData} isLoading={isLoading} />
+        )}
+        {activeView === 'insights' && (
+          <InsightsView data={feedbackData} isLoading={isLoading} />
+        )}
       </Box>
-    </Fade>
+    </Box>
   );
 };
 
-export default ResultsDisplay; 
+// Reusable Components
+const TabButton = ({ active, onClick, icon, label }) => (
+  <Button
+    variant={active ? "contained" : "text"}
+    onClick={onClick}
+    startIcon={icon}
+    sx={{
+      borderRadius: 2,
+      textTransform: 'none',
+      px: 3,
+      py: 1
+    }}
+  >
+    {label}
+  </Button>
+);
+
+export default ModernResultsLayout; 

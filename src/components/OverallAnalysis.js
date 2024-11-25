@@ -1,235 +1,164 @@
 import React from 'react';
 import {
   Box,
+  Grid,
   Card,
   CardContent,
   Typography,
-  Grid,
-  Chip,
-  LinearProgress,
-  Divider,
+  CircularProgress,
   Stack,
-  IconButton,
-  Tooltip
+  Chip,
+  LinearProgress
 } from '@mui/material';
 import {
-  MoodOutlined as SentimentIcon,
-  TrendingUp as TrendingUpIcon,
-  Warning as WarningIcon,
-  Lightbulb as LightbulbIcon,
-  Groups as GroupsIcon,
-  Download as DownloadIcon,
-  ContentCopy as CopyIcon
+  TrendingUp,
+  Groups,
+  Lightbulb,
+  Warning,
+  ThumbUp,
+  Person,
+  Psychology,
+  TrendingDown,
+  CheckCircle
 } from '@mui/icons-material';
+import MetricBox from './analysis/MetricBox';
+import { InsightCard } from './analysis/InsightCard';
+import { PersonaChip } from './analysis/PersonaChip';
+import LoadingState from './analysis/LoadingState';
+import EmptyState from './analysis/EmptyState';
+import { SentimentBreakdown } from './analysis/SentimentBreakdown';
+import { calculateAverageMetrics, findTopPersonas } from '../utils/analysisHelpers';
 
-const MetricCard = ({ title, value, icon, color }) => (
-  <Card sx={{ height: '100%' }}>
-    <CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-        {icon}
-        <Typography variant="h6" color="text.primary">
-          {title}
-        </Typography>
-      </Box>
-      <Typography variant="h4" color={color} sx={{ fontWeight: 'bold' }}>
-        {value}
-      </Typography>
-    </CardContent>
-  </Card>
-);
+const OverallAnalysis = ({ data = {}, isLoading }) => {
+  if (isLoading) return <LoadingState />;
+  if (!data || Object.keys(data).length === 0) return <EmptyState />;
 
-const SentimentBar = ({ sentiment, value }) => (
-  <Box sx={{ mb: 2 }}>
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 0.5 }}>
-      <Typography variant="body2">{sentiment}</Typography>
-      <Typography variant="body2" color="text.secondary">
-        {value}%
-      </Typography>
-    </Box>
-    <LinearProgress
-      variant="determinate"
-      value={value}
-      sx={{
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: 'rgba(0,0,0,0.1)',
-        '& .MuiLinearProgress-bar': {
-          backgroundColor: 
-            sentiment === 'Positive' ? 'success.main' :
-            sentiment === 'Neutral' ? 'warning.main' : 'error.main',
-        }
-      }}
-    />
-  </Box>
-);
-
-const OverallAnalysis = ({ data, onCopy, onDownload }) => {
   const {
-    sentimentBreakdown,
-    keyThemes,
-    demographicInsights,
-    recommendations,
-    riskFactors
+    overallSentiment,
+    confidenceScore,
+    responseRate,
+    sentimentBreakdown = {},
+    keyInsights,
+    keyThemes = [],
+    recommendations = [],
+    riskFactors = [],
+    consensusPoints = [],
+    divergentViews = []
   } = data;
+
+  const averageMetrics = calculateAverageMetrics(data.responses || []);
+  const topPersonas = findTopPersonas(data.responses || []);
 
   return (
     <Box sx={{ p: 2 }}>
-      {/* Top Metrics */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={4}>
-          <MetricCard
-            title="Overall Sentiment"
-            value={data.overallSentiment}
-            icon={<SentimentIcon color="primary" />}
-            color={
-              data.overallSentiment === 'Positive' ? 'success.main' :
-              data.overallSentiment === 'Neutral' ? 'warning.main' : 'error.main'
-            }
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <MetricCard
-            title="Confidence Score"
-            value={`${data.confidenceScore}%`}
-            icon={<TrendingUpIcon color="primary" />}
-            color="primary.main"
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <MetricCard
-            title="Response Rate"
-            value={`${data.responseRate}%`}
-            icon={<GroupsIcon color="primary" />}
-            color="secondary.main"
-          />
-        </Grid>
-      </Grid>
-
       <Grid container spacing={3}>
-        {/* Sentiment Analysis */}
-        <Grid item xs={12} md={6}>
+        {/* Metrics Section */}
+        <Grid item xs={12}>
           <Card>
             <CardContent>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                <Typography variant="h6">Sentiment Breakdown</Typography>
-                <Box>
-                  <Tooltip title="Copy Analysis">
-                    <IconButton size="small" onClick={onCopy}>
-                      <CopyIcon />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title="Download Report">
-                    <IconButton size="small" onClick={onDownload}>
-                      <DownloadIcon />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Box>
-              {Object.entries(sentimentBreakdown).map(([sentiment, value]) => (
-                <SentimentBar key={sentiment} sentiment={sentiment} value={value} />
-              ))}
+              <Typography variant="h6" gutterBottom>Key Metrics</Typography>
+              <Grid container spacing={2}>
+                <MetricBox
+                  title="Overall Sentiment"
+                  value={`${averageMetrics.sentiment}%`}
+                  score={confidenceScore}
+                  icon={<ThumbUp />}
+                />
+                <MetricBox
+                  title="Average Interest"
+                  value={`${averageMetrics.interest}%`}
+                  score={averageMetrics.interest}
+                  icon={<TrendingUp />}
+                />
+                <MetricBox
+                  title="Adoption Rate"
+                  value={`${averageMetrics.adoption}%`}
+                  score={averageMetrics.adoption}
+                  icon={<Groups />}
+                />
+              </Grid>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* Key Themes */}
-        <Grid item xs={12} md={6}>
-          <Card>
+        {/* Top Personas */}
+        <Grid item xs={12} md={4}>
+          <Card sx={{ height: '100%' }}>
             <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Key Themes
-              </Typography>
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                {keyThemes.map((theme, index) => (
-                  <Chip
-                    key={index}
-                    label={theme}
-                    color="primary"
-                    variant="outlined"
-                  />
-                ))}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                <Person />
+                <Typography variant="h6">Top Personas</Typography>
               </Box>
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Demographic Insights */}
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Demographic Insights
-              </Typography>
-              <Stack spacing={2}>
-                {demographicInsights.map((insight, index) => (
-                  <Box key={index}>
-                    <Typography variant="subtitle2" color="primary" gutterBottom>
-                      {insight.category}
-                    </Typography>
-                    <Typography variant="body2">
-                      {insight.description}
-                    </Typography>
-                  </Box>
+              <Stack spacing={1}>
+                {topPersonas.map((persona, index) => (
+                  <PersonaChip key={index} persona={persona} />
                 ))}
               </Stack>
             </CardContent>
           </Card>
+        </Grid>
+
+        {/* Sentiment Breakdown */}
+        <Grid item xs={12} md={8}>
+          <Card sx={{ height: '100%' }}>
+            <CardContent>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                <Psychology />
+                <Typography variant="h6">Sentiment Breakdown</Typography>
+              </Box>
+              <SentimentBreakdown sentimentBreakdown={sentimentBreakdown} />
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Key Insights */}
+        <Grid item xs={12} md={6}>
+          <InsightCard
+            title="Key Insights"
+            items={keyThemes}
+            icon={<Lightbulb />}
+            chipColor="primary"
+          />
         </Grid>
 
         {/* Recommendations */}
         <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                <LightbulbIcon color="primary" />
-                Key Recommendations
-              </Typography>
-              <Stack spacing={2}>
-                {recommendations.map((rec, index) => (
-                  <Box key={index}>
-                    <Typography variant="subtitle2" color="primary" gutterBottom>
-                      {rec.title}
-                    </Typography>
-                    <Typography variant="body2">
-                      {rec.description}
-                    </Typography>
-                  </Box>
-                ))}
-              </Stack>
-            </CardContent>
-          </Card>
+          <InsightCard
+            title="Recommendations"
+            items={recommendations}
+            icon={<TrendingUp />}
+            chipColor="success"
+          />
         </Grid>
 
         {/* Risk Factors */}
+        <Grid item xs={12} md={6}>
+          <InsightCard
+            title="Risk Factors"
+            items={riskFactors}
+            icon={<Warning />}
+            chipColor="error"
+          />
+        </Grid>
+
+        {/* Consensus Points */}
+        <Grid item xs={12} md={6}>
+          <InsightCard
+            title="Areas of Agreement"
+            items={consensusPoints}
+            icon={<CheckCircle />}
+            chipColor="info"
+          />
+        </Grid>
+
+        {/* Divergent Views */}
         <Grid item xs={12}>
-          <Card sx={{ backgroundColor: 'error.lighter' }}>
-            <CardContent>
-              <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                <WarningIcon color="error" />
-                Potential Risk Factors
-              </Typography>
-              <Grid container spacing={2}>
-                {riskFactors.map((risk, index) => (
-                  <Grid item xs={12} md={4} key={index}>
-                    <Box sx={{ 
-                      p: 2, 
-                      backgroundColor: 'background.paper',
-                      borderRadius: 1,
-                      border: '1px solid',
-                      borderColor: 'error.light'
-                    }}>
-                      <Typography variant="subtitle2" color="error" gutterBottom>
-                        {risk.title}
-                      </Typography>
-                      <Typography variant="body2">
-                        {risk.description}
-                      </Typography>
-                    </Box>
-                  </Grid>
-                ))}
-              </Grid>
-            </CardContent>
-          </Card>
+          <InsightCard
+            title="Divergent Views"
+            items={divergentViews}
+            icon={<TrendingDown />}
+            chipColor="warning"
+          />
         </Grid>
       </Grid>
     </Box>

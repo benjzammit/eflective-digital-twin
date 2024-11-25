@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { 
   Box, 
@@ -7,38 +6,33 @@ import {
   Grid,
   Card,
   CardContent,
-  Chip,
   Stack,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Divider,
   styled,
-  Tooltip,
-  Zoom,
   Button,
   Avatar,
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Chip
 } from '@mui/material';
 import {
   CheckCircle,
-  ExpandMore as ExpandMoreIcon,
-  TrendingUp,
-  TrendingDown,
+  ExpandMore,
   Psychology,
   GroupWork,
   Restaurant,
-  Business,
   School,
   Campaign,
   Storefront,
-  DesignServices,
-  LocalHospital
+  LocalHospital,
+  TrendingUp,
+  TrendingDown
 } from '@mui/icons-material';
-import { alpha } from '@mui/material/styles';
 
 // Styled components
 const StyledDemoCard = styled(Card)(({ theme }) => ({
@@ -61,20 +55,6 @@ const StepChip = styled(Chip)(({ theme }) => ({
   '& .MuiChip-label': {
     fontWeight: 500,
   },
-}));
-
-// Add new styled component for hover card
-const FeedbackCard = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderRadius: theme.spacing(1),
-  backgroundColor: theme.palette.background.default,
-  transition: 'all 0.3s ease',
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[2],
-    transform: 'translateY(-2px)',
-  }
 }));
 
 const UseCasesPage = () => {
@@ -313,7 +293,7 @@ const UseCasesPage = () => {
                       }}
                     >
                       <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
+                        expandIcon={<ExpandMore />}
                         sx={{ px: 2 }}
                       >
                         <Box sx={{ width: '100%' }}>
