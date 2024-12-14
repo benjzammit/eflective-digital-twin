@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -8,11 +8,21 @@ const HEADER_HEIGHT = 64;
 const FOOTER_HEIGHT = 48;
 const SIDEBAR_WIDTH = '30%';
 
-const MainLayout = ({ children, onGenerate, isLoading, feedbackData }) => {
+const MainLayout = ({ 
+  children, 
+  onGenerate, 
+  loadingPersonas,
+  isOverallAnalysisLoading 
+}) => {
   const location = useLocation();
-  const theme = useTheme();
   
   const showSidebar = location.pathname === '/research-lab';
+
+  // Get loading states from the URL parameters
+  const isLoading = location.pathname === '/research-lab' && (
+    Object.keys(loadingPersonas || {}).some(key => loadingPersonas[key]) || 
+    isOverallAnalysisLoading
+  );
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
@@ -31,7 +41,6 @@ const MainLayout = ({ children, onGenerate, isLoading, feedbackData }) => {
             width={SIDEBAR_WIDTH} 
             onGenerate={onGenerate}
             isLoading={isLoading}
-            feedbackData={feedbackData}
           />
         )}
         <Box

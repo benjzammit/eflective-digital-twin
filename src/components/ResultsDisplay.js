@@ -26,7 +26,7 @@ const ModernResultsLayout = ({ feedbackData, isLoading }) => {
   const [activeView, setActiveView] = React.useState('summary');
   
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', maxWidth: '900px', margin: '0 auto' }}>
       <Stack 
         direction="row" 
         spacing={2} 

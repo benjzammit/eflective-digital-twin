@@ -1,24 +1,29 @@
 export const calculateAverageMetrics = (responses) => {
   if (!responses.length) return {
-    sentiment: 0,
-    interest: 0,
-    adoption: 0,
-    price: 0,
-    social: 0
+    overall_sentiment: '0% neutral',
+    average_interest: '0%',
+    adoption_rate: '0%'
   };
   
   const totals = responses.reduce((acc, response) => ({
     sentiment: acc.sentiment + (response.detailed.sentimentScore || 0),
     interest: acc.interest + (response.detailed.interestLevel || 0),
-    adoption: acc.adoption + (response.detailed.adoptionLikelihood || 0),
-    price: acc.price + (response.detailed.priceSensitivity || 0),
-    social: acc.social + (response.detailed.socialImpact || 0)
-  }), { sentiment: 0, interest: 0, adoption: 0, price: 0, social: 0 });
+    adoption: acc.adoption + (response.detailed.adoptionLikelihood || 0)
+  }), { sentiment: 0, interest: 0, adoption: 0 });
 
-  return Object.entries(totals).reduce((acc, [key, value]) => ({
-    ...acc,
-    [key]: Math.round(value / responses.length)
-  }), {});
+  const averages = {
+    overall_sentiment: `${Math.round(totals.sentiment / responses.length)}% ${getSentimentLabel(totals.sentiment / responses.length)}`,
+    average_interest: `${Math.round(totals.interest / responses.length)}%`,
+    adoption_rate: `${Math.round(totals.adoption / responses.length)}%`
+  };
+
+  return averages;
+};
+
+const getSentimentLabel = (score) => {
+  if (score >= 75) return 'positive';
+  if (score <= 45) return 'negative';
+  return 'neutral';
 };
 
 export const findTopPersonas = (responses) => {

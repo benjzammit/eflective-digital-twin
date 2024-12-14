@@ -1,110 +1,148 @@
 // src/App.js
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/MainLayout';
+import ResearchLabPage from './pages/ResearchLabPage';
 import AboutPage from './pages/AboutPage';
 import PersonasPage from './pages/PersonasPage';
-import ResearchLabPage from './pages/ResearchLabPage';
 import UseCasesPage from './pages/UseCasesPage';
-import ErrorBoundary from './components/ErrorBoundary';
-import personasData from './data/personas.json';
 import { generateDigitalTwinFeedback, generateOverallAnalysis } from './services/openai';
+import personasData from './data/personas.json';
+import { theme } from './theme/theme';
+import PersonaResultCard from './components/PersonaResultCard';
 
 console.log('Personas data:', personasData); 
 
 function App() {
   const [feedbackData, setFeedbackData] = useState({
     responses: [],
-    overallAnalysis: {
-      overallSentiment: '',
-      confidenceScore: 0,
-      responseRate: 0,
-      sentimentBreakdown: {},
-      keyInsights: '',
-      keyThemes: [],
-      recommendations: [],
-      riskFactors: [],
-      consensusPoints: [],
-      divergentViews: []
-    }
+    overallAnalysis: null
   });
-  const [isLoading, setIsLoading] = useState(false);
+  const [loadingPersonas, setLoadingPersonas] = useState({});
+  const [isOverallAnalysisLoading, setIsOverallAnalysisLoading] = useState(false);
 
   const handleGenerate = async ({ feedbackContent, selectedPersonas }) => {
-    setIsLoading(true);
-    setFeedbackData({ responses: [], overallAnalysis: {
-      overallSentiment: '',
-      confidenceScore: 0,
-      responseRate: 0,
-      sentimentBreakdown: {},
-      keyInsights: '',
-      keyThemes: [],
-      recommendations: [],
-      riskFactors: [],
-      consensusPoints: [],
-      divergentViews: []
-    } });
+    const startTime = performance.now();
+    console.log('Starting generation with:', { 
+      contentLength: feedbackContent.length,
+      selectedPersonas 
+    });
+
+    if (!feedbackContent || selectedPersonas.length === 0) {
+      console.error('Missing required inputs');
+      return;
+    }
+
+    // Reset states
+    setFeedbackData({ responses: [], overallAnalysis: null });
+    console.log('States reset');
+    
+    // Initialize loading states
+    const initialLoadingState = selectedPersonas.reduce((acc, id) => {
+      acc[id] = true;
+      return acc;
+    }, {});
+    setLoadingPersonas(initialLoadingState);
+    console.log('Loading states initialized:', initialLoadingState);
 
     try {
-      const selectedPersonasData = selectedPersonas.map(id => 
-        personasData.find(p => p.id === id)
-      ).filter(Boolean);
-      
-      console.log('Selected Personas:', selectedPersonasData);
+      const selectedPersonasData = selectedPersonas
+        .map(id => personasData.find(p => p.id === id))
+        .filter(Boolean);
+      console.log('Selected personas data:', selectedPersonasData);
 
-      if (selectedPersonasData.length === 0) {
-        throw new Error('Please select at least one persona');
-      }
-
-      const allResponses = await Promise.all(
-        selectedPersonasData.map(async persona => {
+      // Process personas in parallel
+      console.log('Starting parallel persona processing...');
+      const personaPromises = selectedPersonasData.map(async (persona, index) => {
+        console.log(`Processing persona ${persona.name} (${index + 1}/${selectedPersonasData.length})`);
+        try {
           const detailed = await generateDigitalTwinFeedback(feedbackContent, persona, 'detailed');
+          console.log(`Completed processing for ${persona.name}`);
           
-          return {
-            detailed: { ...detailed, persona: persona }
-          };
-        })
-      );
-      
-      console.log('All Responses:', allResponses);
-
-      const analysis = await generateOverallAnalysis(
-        allResponses.map(r => r.detailed)
-      );
-      
-      setFeedbackData({
-        responses: allResponses,
-        overallAnalysis: analysis
+          setFeedbackData(prev => {
+            const newResponses = [...prev.responses];
+            newResponses[index] = {
+              detailed: {
+                ...detailed,
+                persona: persona
+              }
+            };
+            return { ...prev, responses: newResponses };
+          });
+          
+          setLoadingPersonas(prev => ({
+            ...prev,
+            [persona.id]: false
+          }));
+          
+          return detailed;
+        } catch (error) {
+          console.error(`Error processing persona ${persona.name}:`, error);
+          return null;
+        }
       });
 
+      try {
+        console.log('Starting overall analysis...');
+        setIsOverallAnalysisLoading(true);
+        
+        const completedResponses = await Promise.all(personaPromises);
+        console.log('All persona responses completed:', completedResponses);
+        
+        const validResponses = completedResponses.filter(Boolean);
+        console.log('Valid responses for analysis:', validResponses.length);
+        
+        if (validResponses.length > 0) {
+          console.log('Generating overall analysis...');
+          const overallAnalysis = await generateOverallAnalysis(validResponses);
+          console.log('Overall analysis generated:', overallAnalysis);
+          
+          setFeedbackData(prev => ({
+            ...prev,
+            overallAnalysis
+          }));
+        } else {
+          console.warn('No valid responses available for overall analysis');
+        }
+      } catch (error) {
+        console.error('Error in overall analysis:', error);
+      } finally {
+        setIsOverallAnalysisLoading(false);
+        console.log('Overall analysis process completed');
+      }
     } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      setIsLoading(false);
+      console.error('Error in generate process:', error);
     }
   };
 
   return (
-    <Router>
-      <ErrorBoundary>
-        <MainLayout onGenerate={handleGenerate} isLoading={isLoading} feedbackData={feedbackData}>
-          <main>
-            <Routes>
-              <Route path="/" element={<AboutPage />} />
-              <Route path="/personas" element={<PersonasPage />} />
-              <Route path="/research-lab" element={
-                <ResearchLabPage 
-                  onGenerate={handleGenerate}
-                  isLoading={isLoading}
-                  feedbackData={feedbackData}
-                />
-              } />
-              <Route path="/use-cases" element={<UseCasesPage />} />
-            </Routes>
-          </main>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <MainLayout 
+          onGenerate={handleGenerate}
+          loadingPersonas={loadingPersonas}
+          isOverallAnalysisLoading={isOverallAnalysisLoading}
+        >
+          <Routes>
+            <Route path="/" element={<AboutPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/personas" element={<PersonasPage />} />
+            <Route path="/research-lab" element={
+              <ResearchLabPage 
+                onGenerate={handleGenerate}
+                feedbackData={feedbackData}
+                loadingPersonas={loadingPersonas}
+                isOverallAnalysisLoading={isOverallAnalysisLoading}
+              />
+            } />
+            <Route path="/use-cases" element={<UseCasesPage />} />
+          </Routes>
         </MainLayout>
-      </ErrorBoundary>
-    </Router>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

@@ -1,166 +1,97 @@
 import React from 'react';
-import {
-  Box,
-  Grid,
-  Card,
-  CardContent,
-  Typography,
-  CircularProgress,
-  Stack,
-  Chip,
-  LinearProgress
-} from '@mui/material';
-import {
-  TrendingUp,
-  Groups,
-  Lightbulb,
-  Warning,
-  ThumbUp,
-  Person,
-  Psychology,
-  TrendingDown,
-  CheckCircle
-} from '@mui/icons-material';
-import MetricBox from './analysis/MetricBox';
-import { InsightCard } from './analysis/InsightCard';
-import { PersonaChip } from './analysis/PersonaChip';
-import LoadingState from './analysis/LoadingState';
-import EmptyState from './analysis/EmptyState';
-import { SentimentBreakdown } from './analysis/SentimentBreakdown';
-import { calculateAverageMetrics, findTopPersonas } from '../utils/analysisHelpers';
+import { Box, Typography, Card, CardContent } from '@mui/material';
+import { Analytics, TrendingUp, Psychology } from '@mui/icons-material';
+import MetricsOverview from './analysis/MetricsOverview';
+import InsightsSection from './analysis/InsightsSection';
+import AudienceAnalysisCard from './analysis/AudienceAnalysisCard';
+import OverallAnalysisLoading from './analysis/OverallAnalysisLoading';
 
 const OverallAnalysis = ({ data = {}, isLoading }) => {
-  if (isLoading) return <LoadingState />;
-  if (!data || Object.keys(data).length === 0) return <EmptyState />;
+  if (isLoading) {
+    return <OverallAnalysisLoading />;
+  }
 
-  const {
-    overallSentiment,
-    confidenceScore,
-    responseRate,
-    sentimentBreakdown = {},
-    keyInsights,
-    keyThemes = [],
+  const { 
+    key_metrics: keyMetrics = {},
+    key_insights: insights = [],
     recommendations = [],
-    riskFactors = [],
-    consensusPoints = [],
-    divergentViews = []
+    audiences: audienceSegments = []
   } = data;
 
-  const averageMetrics = calculateAverageMetrics(data.responses || []);
-  const topPersonas = findTopPersonas(data.responses || []);
-
   return (
-    <Box sx={{ p: 2 }}>
-      <Grid container spacing={3}>
-        {/* Metrics Section */}
-        <Grid item xs={12}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>Key Metrics</Typography>
-              <Grid container spacing={2}>
-                <MetricBox
-                  title="Overall Sentiment"
-                  value={`${averageMetrics.sentiment}%`}
-                  score={confidenceScore}
-                  icon={<ThumbUp />}
-                />
-                <MetricBox
-                  title="Average Interest"
-                  value={`${averageMetrics.interest}%`}
-                  score={averageMetrics.interest}
-                  icon={<TrendingUp />}
-                />
-                <MetricBox
-                  title="Adoption Rate"
-                  value={`${averageMetrics.adoption}%`}
-                  score={averageMetrics.adoption}
-                  icon={<Groups />}
-                />
-              </Grid>
-            </CardContent>
-          </Card>
-        </Grid>
+    <Box sx={{ maxWidth: '900px', margin: '0 auto' }}>
+      <Box sx={{ mb: 3 }}>
+        <Typography 
+          variant="h5" 
+          sx={{ 
+            fontSize: '1.2rem',
+            fontWeight: 600,
+            color: 'primary.main',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            mb: 2
+          }}
+        >
+          <Analytics sx={{ fontSize: '1.4rem' }} />
+          Overall Analysis
+        </Typography>
+        
+        <Typography 
+          variant="body1" 
+          sx={{ 
+            p: 2,
+            fontSize: '1rem',
+            fontStyle: 'italic',
+            color: 'primary.main',
+            bgcolor: 'primary.50',
+            borderRadius: 1,
+            borderLeft: '4px solid',
+            borderColor: 'primary.main',
+            lineHeight: 1.6
+          }}
+        >
+          {keyMetrics.context || 'No overall analysis available yet.'}
+        </Typography>
+      </Box>
 
-        {/* Top Personas */}
-        <Grid item xs={12} md={4}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                <Person />
-                <Typography variant="h6">Top Personas</Typography>
-              </Box>
-              <Stack spacing={1}>
-                {topPersonas.map((persona, index) => (
-                  <PersonaChip key={index} persona={persona} />
-                ))}
-              </Stack>
-            </CardContent>
-          </Card>
-        </Grid>
+      <MetricsOverview metrics={keyMetrics} />
 
-        {/* Sentiment Breakdown */}
-        <Grid item xs={12} md={8}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                <Psychology />
-                <Typography variant="h6">Sentiment Breakdown</Typography>
-              </Box>
-              <SentimentBreakdown sentimentBreakdown={sentimentBreakdown} />
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Key Insights */}
-        <Grid item xs={12} md={6}>
-          <InsightCard
-            title="Key Insights"
-            items={keyThemes}
-            icon={<Lightbulb />}
-            chipColor="primary"
+      <Box sx={{ mb: 4 }}>
+        <InsightsSection insights={insights} />
+      </Box>
+      
+      <Box sx={{ mb: 3 }}>
+        <Typography 
+          variant="h6" 
+          sx={{ 
+            fontSize: '1.1rem',
+            fontWeight: 600,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1,
+            mb: 2,
+            color: 'text.primary'
+          }}
+        >
+          <Psychology sx={{ color: 'warning.main' }} />
+          Audience Segments
+        </Typography>
+        {audienceSegments.map((audience, index) => (
+          <AudienceAnalysisCard
+            key={index}
+            audience={audience}
+            sx={{ 
+              mb: index < audienceSegments.length - 1 ? 2 : 0,
+              '& .MuiCard-root': {
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: 1
+              }
+            }}
           />
-        </Grid>
-
-        {/* Recommendations */}
-        <Grid item xs={12} md={6}>
-          <InsightCard
-            title="Recommendations"
-            items={recommendations}
-            icon={<TrendingUp />}
-            chipColor="success"
-          />
-        </Grid>
-
-        {/* Risk Factors */}
-        <Grid item xs={12} md={6}>
-          <InsightCard
-            title="Risk Factors"
-            items={riskFactors}
-            icon={<Warning />}
-            chipColor="error"
-          />
-        </Grid>
-
-        {/* Consensus Points */}
-        <Grid item xs={12} md={6}>
-          <InsightCard
-            title="Areas of Agreement"
-            items={consensusPoints}
-            icon={<CheckCircle />}
-            chipColor="info"
-          />
-        </Grid>
-
-        {/* Divergent Views */}
-        <Grid item xs={12}>
-          <InsightCard
-            title="Divergent Views"
-            items={divergentViews}
-            icon={<TrendingDown />}
-            chipColor="warning"
-          />
-        </Grid>
-      </Grid>
+        ))}
+      </Box>
     </Box>
   );
 };
