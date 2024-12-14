@@ -12,6 +12,13 @@
     "income": "€30,000 - €39,999",
     "ethnicity": "Maltese",
     "religion": "Roman Catholic",
+    "country_code": "MT",
+    "segments": {
+      "age_group": "25-34",
+      "income_bracket": "Middle",
+      "lifecycle_stage": "Young Professional",
+      "region": "Urban"
+    },
     "description": "Matthew is a tech-savvy software engineer who embraces new technologies and values high-quality products and excellent customer service.",
     "personality_traits": {
       "openness": "High",
@@ -97,6 +104,13 @@
     "income": "€40,000 - €49,999",
     "ethnicity": "Maltese",
     "religion": "Roman Catholic",
+    "country_code": "MT",
+    "segments": {
+      "age_group": "45-54", 
+      "income_bracket": "High", 
+      "lifecycle_stage": "Executive", 
+      "region": "Urban" 
+    },
     "description": "Anna is a small business owner passionate about Maltese culture and sustainability, valuing community engagement and ethical practices.",
     "personality_traits": {
       "openness": "High",
@@ -182,6 +196,13 @@
     "income": "Less than €10,000",
     "ethnicity": "Maltese",
     "religion": "No religious affiliation",
+    "country_code": "MT",
+    "segments": {
+      "age_group": "18-24", 
+      "income_bracket": "Low", 
+      "lifecycle_stage": "Student",
+      "region": "Urban" 
+    },
     "description": "Daniel is a university student who is highly active on social media, values experiences over possessions, and is influenced by peers.",
     "personality_traits": {
       "openness": "High",
@@ -267,6 +288,13 @@
     "income": "€20,000 - €29,999",
     "ethnicity": "Maltese",
     "religion": "Roman Catholic",
+    "country_code": "MT",
+    "segments": {
+      "age_group": "65+",
+      "income_bracket": "Low",
+      "lifecycle_stage": "Retiree",
+      "region": "Rural"
+    },
     "description": "Maria is a retired teacher who values tradition, community, and family. She is less tech-oriented but open to learning.",
     "personality_traits": {
       "openness": "Moderate",
@@ -352,6 +380,13 @@
     "income": "€20,000 - €29,999",
     "ethnicity": "Maltese",
     "religion": "Prefer not to say",
+    "country_code": "MT",
+    "segments": {
+      "age_group": "25-34", 
+      "income_bracket": "Low", 
+      "lifecycle_stage": "Freelancer",
+      "region": "Urban"
+    },
     "description": "Lara is a creative professional who values artistic expression, flexibility, and continuous learning. She is environmentally conscious and tech-savvy.",
     "personality_traits": {
       "openness": "High",
@@ -423,5 +458,1956 @@
     },
     "image": "images/lara-vella.png",
     "imageId": "persona5"
-  }
-]
+  },
+    {
+      "id": "persona_urban_professional_uk",
+      "name": "Emma Carter",
+      "age": 32,
+      "title": "Urban Professional",
+      "gender": "Female",
+      "location": "London",
+      "country_code": "UK",
+      "marital_status": "Single",
+      "education": "Master's degree in Business Administration",
+      "occupation": "Management Consultant",
+      "income": "£60,000 - £70,000",
+      "ethnicity": "White British",
+      "religion": "Agnostic",
+      "description": "Emma is a driven professional living in the city, focused on career growth and maintaining an active social life.",
+      "segments": {
+        "age_group": "25-34",
+        "income_bracket": "Middle to High",
+        "lifecycle_stage": "Young Professional",
+        "region": "Urban"
+      },
+      "personality_traits": {
+        "openness": "High",
+        "conscientiousness": "High",
+        "extraversion": "Moderate",
+        "agreeableness": "Moderate",
+        "neuroticism": "Low"
+      },
+      "values_and_beliefs": {
+        "environmental_concern": 4,
+        "importance_of_sustainability": "Very important",
+        "social_responsibility": "Believes businesses should have ethical practices",
+        "political_orientation": "Liberal",
+        "cultural_traditions_importance": "Low",
+        "value_priorities": ["Career", "Health", "Personal growth", "Sustainability"]
+      },
+      "behavioral_patterns": {
+        "daily_routine": "Long work hours, gym sessions, and dining out with friends",
+        "decision_making_style": "Data-driven with a preference for reviews",
+        "purchasing_habits": "Buys high-quality and sustainable products",
+        "brand_loyalty": "Moderately loyal",
+        "adoption_of_new_products": "Very high"
+      },
+      "preferences_and_interests": {
+        "hobbies": ["Yoga", "Traveling", "Networking", "Cooking"],
+        "media_consumption": ["Podcasts", "Business news", "Streaming services"],
+        "favorite_social_media": ["LinkedIn", "Instagram"],
+        "travel_frequency": "Multiple international trips annually",
+        "cuisine_preferences": ["Vegan", "Mediterranean", "Asian"]
+      },
+      "emotional_responses": {
+        "stress_response": ["Engages in exercise", "Meditates to reduce stress"],
+        "conflict_resolution": "Prefers open communication",
+        "emotional_expression": "Comfortable",
+        "recent_positive_experience": "Received a promotion at work"
+      },
+      "communication_style": {
+        "preferred_channels": ["Email", "Phone", "Face-to-face"],
+        "information_preference": ["Detailed reports", "Summarized insights"],
+        "languages": ["English", "French"],
+        "public_speaking_confidence": "High"
+      },
+      "consumer_behavior": {
+        "shopping_preferences": ["Online retailers", "Premium stores"],
+        "purchase_factors": {
+          "price": 3,
+          "quality": 5,
+          "brand_reputation": 4,
+          "recommendations": 4,
+          "advertising": 3,
+          "convenience": 5,
+          "sustainability": 5,
+          "customer_service": 4
+        },
+        "online_shopping_frequency": "Frequently",
+        "use_of_reviews": "Always",
+        "impulse_buying": "Occasionally"
+      },
+      "technology_usage": {
+        "devices_owned": ["Smartphone", "Laptop", "Smartwatch"],
+        "internet_usage_hours": "6-8 hours",
+        "adoption_of_technology": "Early adopter",
+        "primary_online_activities": ["Work", "Social networking", "Learning"]
+      },
+      "additional_insights": {
+        "exceptional_experience": "Enjoyed a seamless booking and travel experience through an app",
+        "improvement_suggestions": "Better integration of sustainability metrics in shopping apps",
+        "future_trends": "Increased focus on mental wellness and hybrid work solutions"
+      },
+      "image": "assets/images/emma-carter.png",
+      "imageId": "persona1"
+    },
+    {
+      "id": "persona_rural_entrepreneur_uk",
+      "name": "Thomas Green",
+      "age": 45,
+      "title": "Rural Entrepreneur",
+      "gender": "Male",
+      "location": "Cornwall",
+      "country_code": "UK",
+      "marital_status": "Married",
+      "education": "Bachelor's degree in Agricultural Science",
+      "occupation": "Farm Owner and Organic Produce Supplier",
+      "income": "£50,000 - £60,000",
+      "ethnicity": "White British",
+      "religion": "Christian",
+      "description": "Thomas runs a successful organic farm and values sustainability and local community involvement.",
+      "segments": {
+        "age_group": "35-44",
+        "income_bracket": "Middle",
+        "lifecycle_stage": "Mid-Career Professional",
+        "region": "Rural"
+      },
+      "personality_traits": {
+        "openness": "Moderate",
+        "conscientiousness": "High",
+        "extraversion": "Moderate",
+        "agreeableness": "High",
+        "neuroticism": "Low"
+      },
+      "values_and_beliefs": {
+        "environmental_concern": 5,
+        "importance_of_sustainability": "Extremely important",
+        "social_responsibility": "Strong advocate for sustainable farming",
+        "political_orientation": "Conservative",
+        "cultural_traditions_importance": "Very high",
+        "value_priorities": ["Family", "Community", "Sustainability"]
+      },
+      "behavioral_patterns": {
+        "daily_routine": "Manages farm operations, markets produce, spends time with family",
+        "decision_making_style": "Practical and value-focused",
+        "purchasing_habits": "Supports local businesses and eco-friendly products",
+        "brand_loyalty": "Very loyal",
+        "adoption_of_new_products": "Moderate"
+      },
+      "preferences_and_interests": {
+        "hobbies": ["Gardening", "Fishing", "Cooking"],
+        "media_consumption": ["Local newspapers", "Agricultural blogs"],
+        "favorite_social_media": ["Facebook", "YouTube"],
+        "travel_frequency": "Rarely travels internationally",
+        "cuisine_preferences": ["British", "Farm-to-table"]
+      },
+      "emotional_responses": {
+        "stress_response": ["Turns to family support", "Engages in outdoor activities"],
+        "conflict_resolution": "Prefers straightforward discussions",
+        "emotional_expression": "Moderate",
+        "recent_positive_experience": "Successfully expanded his organic produce line"
+      },
+      "communication_style": {
+        "preferred_channels": ["Phone", "In-person"],
+        "information_preference": ["Visual aids", "Practical examples"],
+        "languages": ["English"],
+        "public_speaking_confidence": "Moderate"
+      },
+      "consumer_behavior": {
+        "shopping_preferences": ["Local markets", "Specialty stores"],
+        "purchase_factors": {
+          "price": 3,
+          "quality": 5,
+          "brand_reputation": 5,
+          "recommendations": 4,
+          "advertising": 2,
+          "convenience": 3,
+          "sustainability": 5,
+          "customer_service": 5
+        },
+        "online_shopping_frequency": "Occasionally",
+        "use_of_reviews": "Often",
+        "impulse_buying": "Rarely"
+      },
+      "technology_usage": {
+        "devices_owned": ["Smartphone", "Laptop"],
+        "internet_usage_hours": "3-5 hours",
+        "adoption_of_technology": "Early majority",
+        "primary_online_activities": ["Research", "Networking"]
+      },
+      "additional_insights": {
+        "exceptional_experience": "Partnered with a tech company to optimize farm yield",
+        "improvement_suggestions": "Greater accessibility to agricultural tech tools",
+        "future_trends": "Precision farming and renewable energy integration"
+      },
+      "image": "assets/images/thomas-green.png",
+      "imageId": "persona2"
+    },
+    {
+      "id": "persona_university_student_uk",
+      "name": "Sophie Patel",
+      "age": 21,
+      "title": "Social Media Enthusiast",
+      "gender": "Female",
+      "location": "Manchester",
+      "country_code": "UK",
+      "marital_status": "Single",
+      "education": "Pursuing Bachelor's degree in Marketing",
+      "occupation": "Part-time Barista and University Student",
+      "income": "Less than £15,000",
+      "ethnicity": "British Indian",
+      "religion": "Hindu",
+      "description": "Sophie is a highly active social media user who values experiences and creative expression.",
+      "segments": {
+        "age_group": "18-24",
+        "income_bracket": "Low",
+        "lifecycle_stage": "Student",
+        "region": "Urban"
+      },
+      "personality_traits": {
+        "openness": "High",
+        "conscientiousness": "Moderate",
+        "extraversion": "High",
+        "agreeableness": "Moderate",
+        "neuroticism": "Moderate"
+      },
+      "values_and_beliefs": {
+        "environmental_concern": 3,
+        "importance_of_sustainability": "Moderately important",
+        "social_responsibility": "Believes in equality and diversity",
+        "political_orientation": "Very liberal",
+        "cultural_traditions_importance": "Low",
+        "value_priorities": ["Personal growth", "Experiences", "Social justice"]
+      },
+      "behavioral_patterns": {
+        "daily_routine": "Attends lectures, works part-time, creates social media content",
+        "decision_making_style": "Trend-driven and peer-influenced",
+        "purchasing_habits": "Buys trendy and affordable items",
+        "brand_loyalty": "Low; loves exploring new brands",
+        "adoption_of_new_products": "Very high"
+      },
+      "preferences_and_interests": {
+        "hobbies": ["Photography", "Traveling", "Dancing"],
+        "media_consumption": ["TikTok", "Instagram", "YouTube"],
+        "favorite_social_media": ["Instagram", "TikTok"],
+        "travel_frequency": "1-2 trips annually",
+        "cuisine_preferences": ["Indian", "Italian", "Fusion"]
+      },
+      "emotional_responses": {
+        "stress_response": ["Turns to friends for support", "Engages in creative activities"],
+        "conflict_resolution": "Avoids confrontation",
+        "emotional_expression": "Moderate",
+        "recent_positive_experience": "Went viral on social media for a creative post"
+      },
+      "communication_style": {
+        "preferred_channels": ["Text messaging", "Social media"],
+        "information_preference": ["Visual content", "Concise updates"],
+        "languages": ["English", "Gujarati"],
+        "public_speaking_confidence": "Moderate"
+      },
+      "consumer_behavior": {
+        "shopping_preferences": ["Online retailers", "Fast fashion outlets"],
+        "purchase_factors": {
+          "price": 5,
+          "quality": 3,
+          "brand_reputation": 3,
+          "recommendations": 5,
+          "advertising": 4,
+          "convenience": 5,
+          "sustainability": 2,
+          "customer_service": 3
+        },
+        "online_shopping_frequency": "Frequently",
+        "use_of_reviews": "Often",
+        "impulse_buying": "Often"
+      },
+      "technology_usage": {
+        "devices_owned": ["Smartphone", "Laptop"],
+        "internet_usage_hours": "8-10 hours",
+        "adoption_of_technology": "Innovator",
+        "primary_online_activities": ["Social networking", "Streaming", "Shopping"]
+      },
+      "additional_insights": {
+        "exceptional_experience": "Discovered a unique brand through TikTok",
+        "improvement_suggestions": "Better personalization in brand recommendations",
+        "future_trends": "Integration of AR in social media shopping"
+      },
+      "image": "assets/images/sophie-patel.png",
+      "imageId": "persona3"
+    },
+      {
+        "id": "persona_digital_nomad_uk",
+        "name": "Chloe Taylor",
+        "age": 29,
+        "title": "Digital Nomad",
+        "gender": "Female",
+        "location": "Brighton",
+        "country_code": "UK",
+        "marital_status": "Single",
+        "education": "Bachelor's degree in Marketing",
+        "occupation": "Freelance Content Creator",
+        "income": "£30,000 - £40,000",
+        "ethnicity": "White British",
+        "religion": "None",
+        "description": "Chloe balances a flexible lifestyle, often working remotely from cafes and co-working spaces in the city.",
+        "segments": {
+          "age_group": "25-34",
+          "income_bracket": "Middle",
+          "lifecycle_stage": "Freelancer",
+          "region": "Urban"
+        },
+        "personality_traits": {
+          "openness": "High",
+          "conscientiousness": "Moderate",
+          "extraversion": "Moderate",
+          "agreeableness": "High",
+          "neuroticism": "Moderate"
+        },
+        "values_and_beliefs": {
+          "environmental_concern": 4,
+          "importance_of_sustainability": "Very important",
+          "social_responsibility": "Supports ethical consumerism",
+          "political_orientation": "Liberal",
+          "cultural_traditions_importance": "Low",
+          "value_priorities": ["Flexibility", "Creativity", "Experiences"]
+        },
+        "behavioral_patterns": {
+          "daily_routine": "Works on client projects, spends time networking and attending workshops",
+          "decision_making_style": "Trend-driven with a focus on value",
+          "purchasing_habits": "Favors tech gadgets and sustainable products",
+          "brand_loyalty": "Low",
+          "adoption_of_new_products": "Very high"
+        },
+        "preferences_and_interests": {
+          "hobbies": ["Photography", "Traveling", "Yoga"],
+          "media_consumption": ["YouTube", "Blogs", "Podcasts"],
+          "favorite_social_media": ["Instagram", "LinkedIn"],
+          "travel_frequency": "Frequent domestic and international trips",
+          "cuisine_preferences": ["Vegan", "Asian"]
+        }
+      },
+      {
+        "id": "persona_large_family_uk",
+        "name": "Ahmed and Fatima Khan",
+        "age": 37,
+        "title": "Large Family",
+        "gender": "Male and Female",
+        "location": "Manchester",
+        "country_code": "UK",
+        "marital_status": "Married",
+        "education": "Bachelor's degrees in Business and Teaching",
+        "occupation": "Small Business Owner and Teacher",
+        "income": "£50,000 - £70,000 (combined)",
+        "ethnicity": "British Pakistani",
+        "religion": "Muslim",
+        "description": "Ahmed and Fatima focus on raising their four children while running a family business and engaging with the local community.",
+        "segments": {
+          "age_group": "35-44",
+          "income_bracket": "Middle",
+          "lifecycle_stage": "Parents",
+          "region": "Urban"
+        },
+        "personality_traits": {
+          "openness": "High",
+          "conscientiousness": "High",
+          "extraversion": "Moderate",
+          "agreeableness": "High",
+          "neuroticism": "Moderate"
+        },
+        "values_and_beliefs": {
+          "environmental_concern": 3,
+          "importance_of_sustainability": "Moderately important",
+          "social_responsibility": "Strongly involved in cultural and community projects",
+          "political_orientation": "Moderate",
+          "cultural_traditions_importance": "Very high",
+          "value_priorities": ["Family", "Education", "Community"]
+        },
+        "behavioral_patterns": {
+          "daily_routine": "Manage family schedules, work on the business, engage in children's education",
+          "decision_making_style": "Collaborative and need-based",
+          "purchasing_habits": "Focus on value-for-money and educational tools",
+          "brand_loyalty": "High",
+          "adoption_of_new_products": "Moderate"
+        },
+        "preferences_and_interests": {
+          "hobbies": ["Cooking", "Family outings", "Cultural events"],
+          "media_consumption": ["Streaming services", "News apps"],
+          "favorite_social_media": ["WhatsApp", "Facebook"],
+          "travel_frequency": "Annual family trips",
+          "cuisine_preferences": ["Pakistani", "Italian"]
+        }
+      },
+      {
+        "id": "persona_elderly_single_uk",
+        "name": "John Smith",
+        "age": 74,
+        "title": "Elderly Single",
+        "gender": "Male",
+        "location": "Liverpool",
+        "country_code": "UK",
+        "marital_status": "Widowed",
+        "education": "High school diploma",
+        "occupation": "Retired Dock Worker",
+        "income": "£15,000 - £20,000",
+        "ethnicity": "White British",
+        "religion": "Christian",
+        "description": "John lives alone and spends his time participating in local community groups and enjoying traditional hobbies.",
+        "segments": {
+          "age_group": "65+",
+          "income_bracket": "Lower",
+          "lifecycle_stage": "Retiree",
+          "region": "Urban"
+        },
+        "personality_traits": {
+          "openness": "Low",
+          "conscientiousness": "High",
+          "extraversion": "Low",
+          "agreeableness": "High",
+          "neuroticism": "Moderate"
+        },
+        "values_and_beliefs": {
+          "environmental_concern": 2,
+          "importance_of_sustainability": "Low",
+          "social_responsibility": "Active in local charities",
+          "political_orientation": "Conservative",
+          "cultural_traditions_importance": "High",
+          "value_priorities": ["Stability", "Community", "Health"]
+        },
+        "behavioral_patterns": {
+          "daily_routine": "Visits local library, attends charity events, spends evenings at home",
+          "decision_making_style": "Practical and routine-based",
+          "purchasing_habits": "Buys essentials and avoids luxuries",
+          "brand_loyalty": "Very high",
+          "adoption_of_new_products": "Very low"
+        },
+        "preferences_and_interests": {
+          "hobbies": ["Gardening", "Knitting", "Reading"],
+          "media_consumption": ["Local newspapers", "Radio"],
+          "favorite_social_media": ["Facebook"],
+          "travel_frequency": "Rarely travels",
+          "cuisine_preferences": ["British", "Comfort food"]
+        }
+      },
+      {
+        "id": "persona_young_student_uk",
+        "name": "Emily Davies",
+        "age": 20,
+        "title": "Young Student",
+        "gender": "Female",
+        "location": "Edinburgh",
+        "country_code": "UK",
+        "marital_status": "Single",
+        "education": "Studying Psychology",
+        "occupation": "Part-time Waitress",
+        "income": "Less than £10,000",
+        "ethnicity": "White British",
+        "religion": "None",
+        "description": "Emily is a university student focused on her studies and socializing with friends in her free time.",
+        "segments": {
+          "age_group": "18-24",
+          "income_bracket": "Low",
+          "lifecycle_stage": "Student",
+          "region": "Urban"
+        },
+        "personality_traits": {
+          "openness": "High",
+          "conscientiousness": "Moderate",
+          "extraversion": "High",
+          "agreeableness": "High",
+          "neuroticism": "Moderate"
+        },
+        "values_and_beliefs": {
+          "environmental_concern": 3,
+          "importance_of_sustainability": "Moderate",
+          "social_responsibility": "Believes in equality and social justice",
+          "political_orientation": "Liberal",
+          "cultural_traditions_importance": "Low",
+          "value_priorities": ["Personal growth", "Education", "Experiences"]
+        },
+        "behavioral_patterns": {
+          "daily_routine": "Attends lectures, works part-time, spends time on social media",
+          "decision_making_style": "Influenced by trends and peer reviews",
+          "purchasing_habits": "Buys trendy and budget-friendly products",
+          "brand_loyalty": "Low",
+          "adoption_of_new_products": "High"
+        },
+        "preferences_and_interests": {
+          "hobbies": ["Socializing", "Watching films", "Yoga"],
+          "media_consumption": ["TikTok", "Instagram", "YouTube"],
+          "favorite_social_media": ["Instagram", "Snapchat"],
+          "travel_frequency": "Occasional weekend trips",
+          "cuisine_preferences": ["Vegan", "Italian"]
+        }
+      },
+      
+        {
+          "id": "persona_middle_class_family_uk",
+          "name": "James and Sarah White",
+          "age": 40,
+          "title": "Middle-Class Family",
+          "gender": "Male and Female",
+          "location": "Birmingham",
+          "country_code": "UK",
+          "marital_status": "Married",
+          "education": "Bachelor's degree in Education and Engineering",
+          "occupation": "Primary School Teacher and Civil Engineer",
+          "income": "£60,000 - £80,000 (combined)",
+          "ethnicity": "White British",
+          "religion": "Christian",
+          "description": "James and Sarah are working parents balancing career responsibilities and raising two children in suburban Birmingham.",
+          "segments": {
+            "age_group": "35-44",
+            "income_bracket": "Middle",
+            "lifecycle_stage": "Parents",
+            "region": "Suburban"
+          },
+          "personality_traits": {
+            "openness": "Moderate",
+            "conscientiousness": "High",
+            "extraversion": "Moderate",
+            "agreeableness": "High",
+            "neuroticism": "Low"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 4,
+            "importance_of_sustainability": "Very important",
+            "social_responsibility": "Value community involvement",
+            "political_orientation": "Moderate",
+            "cultural_traditions_importance": "Moderate",
+            "value_priorities": ["Family", "Community", "Education"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Manage work, school runs, extracurricular activities, and family dinners",
+            "decision_making_style": "Collaborative; evaluates long-term benefits",
+            "purchasing_habits": "Prioritize value-for-money and quality",
+            "brand_loyalty": "Moderate",
+            "adoption_of_new_products": "Moderate"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Cycling", "Gardening", "Family outings"],
+            "media_consumption": ["Television", "Local news", "Streaming services"],
+            "favorite_social_media": ["Facebook", "Instagram"],
+            "travel_frequency": "1-2 family trips annually",
+            "cuisine_preferences": ["British", "Italian"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Discusses issues with spouse", "Spends quality time with family"],
+            "conflict_resolution": "Collaborates to find solutions",
+            "emotional_expression": "Moderate",
+            "recent_positive_experience": "Went on a camping trip with family"
+          },
+          "communication_style": {
+            "preferred_channels": ["Phone calls", "Email"],
+            "information_preference": ["Detailed discussions", "Examples"],
+            "languages": ["English"],
+            "public_speaking_confidence": "Moderate"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Supermarkets", "Local stores"],
+            "purchase_factors": {
+              "price": 4,
+              "quality": 5,
+              "brand_reputation": 4,
+              "recommendations": 3,
+              "advertising": 2,
+              "convenience": 5,
+              "sustainability": 4,
+              "customer_service": 3
+            },
+            "online_shopping_frequency": "Occasionally",
+            "use_of_reviews": "Sometimes",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Laptop", "Smart TV"],
+            "internet_usage_hours": "3-5 hours",
+            "adoption_of_technology": "Early majority",
+            "primary_online_activities": ["Entertainment", "Research", "Shopping"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Loved a family-friendly travel booking app",
+            "improvement_suggestions": "Easier access to child-friendly activities in urban areas",
+            "future_trends": "Focus on hybrid work solutions to balance family life"
+          },
+          "image": "assets/images/james-and-sarah-white.png",
+          "imageId": "persona1"
+        },
+        {
+          "id": "persona_tech_savvy_retiree_uk",
+          "name": "Margaret Collins",
+          "age": 68,
+          "title": "Tech-Savvy Retiree",
+          "gender": "Female",
+          "location": "Leeds",
+          "country_code": "UK",
+          "marital_status": "Widowed",
+          "education": "High school diploma",
+          "occupation": "Retired NHS Nurse",
+          "income": "£20,000 - £30,000",
+          "ethnicity": "White British",
+          "religion": "Christian",
+          "description": "Margaret enjoys using technology to stay connected with family and explore new hobbies like digital photography.",
+          "segments": {
+            "age_group": "65+",
+            "income_bracket": "Lower Middle",
+            "lifecycle_stage": "Retiree",
+            "region": "Urban"
+          },
+          "personality_traits": {
+            "openness": "Moderate",
+            "conscientiousness": "High",
+            "extraversion": "Low",
+            "agreeableness": "High",
+            "neuroticism": "Low"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 3,
+            "importance_of_sustainability": "Important",
+            "social_responsibility": "Supports charitable causes",
+            "political_orientation": "Conservative",
+            "cultural_traditions_importance": "High",
+            "value_priorities": ["Family", "Community", "Health"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Starts the day with light exercise, attends local workshops, video calls family",
+            "decision_making_style": "Practical and experience-driven",
+            "purchasing_habits": "Prefers trusted, familiar brands",
+            "brand_loyalty": "Very loyal",
+            "adoption_of_new_products": "Low"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Photography", "Gardening", "Knitting"],
+            "media_consumption": ["Facebook", "YouTube", "Online forums"],
+            "favorite_social_media": ["Facebook"],
+            "travel_frequency": "Occasionally for family visits",
+            "cuisine_preferences": ["British", "Traditional home-cooked meals"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Turns to family for comfort", "Engages in knitting projects"],
+            "conflict_resolution": "Prefers to avoid confrontation",
+            "emotional_expression": "Comfortable",
+            "recent_positive_experience": "Attended a photography workshop with friends"
+          },
+          "communication_style": {
+            "preferred_channels": ["Text messaging", "Email"],
+            "information_preference": ["Visual aids", "Step-by-step guides"],
+            "languages": ["English"],
+            "public_speaking_confidence": "Low"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Local stores", "Online shopping for specific items"],
+            "purchase_factors": {
+              "price": 3,
+              "quality": 5,
+              "brand_reputation": 4,
+              "recommendations": 3,
+              "advertising": 2,
+              "convenience": 4,
+              "sustainability": 3,
+              "customer_service": 5
+            },
+            "online_shopping_frequency": "Occasionally",
+            "use_of_reviews": "Often",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Laptop", "Tablet"],
+            "internet_usage_hours": "2-4 hours",
+            "adoption_of_technology": "Late majority",
+            "primary_online_activities": ["Social networking", "Video calls", "Browsing recipes"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Received an easy-to-follow tech support service",
+            "improvement_suggestions": "Simpler user interfaces for older audiences",
+            "future_trends": "Growth in tech products designed for retirees"
+          },
+          "image": "assets/images/margaret-collins.png",
+          "imageId": "persona2"
+        },
+        {
+          "id": "persona_rural_young_professional_uk",
+          "name": "Anna Bell",
+          "age": 26,
+          "title": "Rural Young Professional",
+          "gender": "Female",
+          "location": "Devon",
+          "country_code": "UK",
+          "marital_status": "Single",
+          "education": "Bachelor's degree in Environmental Science",
+          "occupation": "Sustainability Consultant",
+          "income": "£30,000 - £40,000",
+          "ethnicity": "White British",
+          "religion": "None",
+          "description": "Anna works on environmental projects and enjoys the tranquility of rural living while staying connected with urban opportunities.",
+          "segments": {
+            "age_group": "25-34",
+            "income_bracket": "Middle",
+            "lifecycle_stage": "Young Professional",
+            "region": "Rural"
+          },
+          "personality_traits": {
+            "openness": "High",
+            "conscientiousness": "Moderate",
+            "extraversion": "Moderate",
+            "agreeableness": "High",
+            "neuroticism": "Low"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 5,
+            "importance_of_sustainability": "Extremely important",
+            "social_responsibility": "Advocates for eco-friendly practices",
+            "political_orientation": "Liberal",
+            "cultural_traditions_importance": "Low",
+            "value_priorities": ["Environment", "Personal growth", "Community"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Works on sustainability reports, explores local nature trails, attends community events",
+            "decision_making_style": "Driven by values and evidence",
+            "purchasing_habits": "Supports sustainable and fair-trade brands",
+            "brand_loyalty": "Moderate",
+            "adoption_of_new_products": "High"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Hiking", "Photography", "Gardening"],
+            "media_consumption": ["Environmental blogs", "Podcasts"],
+            "favorite_social_media": ["Instagram", "Twitter"],
+            "travel_frequency": "Occasional domestic trips",
+            "cuisine_preferences": ["Vegan", "Farm-to-table"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Spends time in nature", "Practices yoga"],
+            "conflict_resolution": "Collaborative and open",
+            "emotional_expression": "Comfortable",
+            "recent_positive_experience": "Participated in a community tree-planting drive"
+          },
+          "communication_style": {
+            "preferred_channels": ["Email", "Face-to-face"],
+            "information_preference": ["Visual data", "Graphs and examples"],
+            "languages": ["English"],
+            "public_speaking_confidence": "Moderate"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Local markets", "Sustainable stores"],
+            "purchase_factors": {
+              "price": 3,
+              "quality": 5,
+              "brand_reputation": 4,
+              "recommendations": 4,
+              "advertising": 2,
+              "convenience": 3,
+              "sustainability": 5,
+              "customer_service": 4
+            },
+            "online_shopping_frequency": "Occasionally",
+            "use_of_reviews": "Frequently",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Laptop", "Tablet"],
+            "internet_usage_hours": "3-5 hours",
+            "adoption_of_technology": "Early majority",
+            "primary_online_activities": ["Research", "Social networking", "Learning"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Loved a guided hiking app that integrated with local maps",
+            "improvement_suggestions": "Better access to sustainable products in rural areas",
+            "future_trends": "Focus on renewable energy solutions in rural communities"
+          },
+          "image": "assets/images/anna-bell.png",
+          "imageId": "persona1"
+        },
+        {
+          "id": "persona_diverse_family_uk",
+          "name": "Raj and Priya Kumar",
+          "age": 42,
+          "title": "Diverse Family",
+          "gender": "Male and Female",
+          "location": "London",
+          "country_code": "UK",
+          "marital_status": "Married",
+          "education": "Master's degrees in IT and Economics",
+          "occupation": "Software Engineer and Economist",
+          "income": "£80,000 - £100,000 (combined)",
+          "ethnicity": "British Indian",
+          "religion": "Hindu",
+          "description": "Raj and Priya are a dual-income family focused on career success and providing cultural education for their two children.",
+          "segments": {
+            "age_group": "35-44",
+            "income_bracket": "Upper Middle",
+            "lifecycle_stage": "Parents",
+            "region": "Urban"
+          },
+          "personality_traits": {
+            "openness": "High",
+            "conscientiousness": "High",
+            "extraversion": "Moderate",
+            "agreeableness": "High",
+            "neuroticism": "Low"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 4,
+            "importance_of_sustainability": "Important",
+            "social_responsibility": "Support multicultural community projects",
+            "political_orientation": "Moderate",
+            "cultural_traditions_importance": "High",
+            "value_priorities": ["Family", "Education", "Community"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Manage work schedules, engage in children’s activities, and participate in cultural events",
+            "decision_making_style": "Collaborative and data-driven",
+            "purchasing_habits": "Spend on education and family experiences",
+            "brand_loyalty": "High",
+            "adoption_of_new_products": "Moderate"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Cooking", "Reading", "Traveling"],
+            "media_consumption": ["Cultural programs", "Streaming services"],
+            "favorite_social_media": ["WhatsApp", "Facebook"],
+            "travel_frequency": "Annual international trips",
+            "cuisine_preferences": ["Indian", "Italian", "Chinese"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Talks with each other for support", "Plans family outings to unwind"],
+            "conflict_resolution": "Collaborative and empathetic",
+            "emotional_expression": "Moderate",
+            "recent_positive_experience": "Organized a successful cultural event in their community"
+          },
+          "communication_style": {
+            "preferred_channels": ["Phone", "In-person meetings"],
+            "information_preference": ["Visual aids", "Detailed explanations"],
+            "languages": ["English", "Hindi"],
+            "public_speaking_confidence": "Moderate"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Local markets", "Supermarkets"],
+            "purchase_factors": {
+              "price": 3,
+              "quality": 5,
+              "brand_reputation": 4,
+              "recommendations": 5,
+              "advertising": 3,
+              "convenience": 4,
+              "sustainability": 4,
+              "customer_service": 5
+            },
+            "online_shopping_frequency": "Frequently",
+            "use_of_reviews": "Often",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Laptop", "Tablet"],
+            "internet_usage_hours": "5-7 hours",
+            "adoption_of_technology": "Early majority",
+            "primary_online_activities": ["Streaming", "Work", "Education"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Received excellent online schooling tools for children",
+            "improvement_suggestions": "Better multicultural content for family education apps",
+            "future_trends": "Growth in hybrid learning solutions"
+          },
+          "image": "assets/images/raj-priya-kumar.png",
+          "imageId": "persona2"
+        },{
+          "id": "persona_urban_entrepreneur_uk",
+          "name": "Chloe Thompson",
+          "age": 29,
+          "title": "Urban Entrepreneur",
+          "gender": "Female",
+          "location": "London",
+          "country_code": "UK",
+          "marital_status": "Single",
+          "education": "Master's degree in Business Management",
+          "occupation": "Founder of a Startup",
+          "income": "£50,000 - £70,000",
+          "ethnicity": "White British",
+          "religion": "Agnostic",
+          "description": "Chloe is a driven entrepreneur focused on growing her business and staying ahead in the tech industry.",
+          "segments": {
+            "age_group": "25-34",
+            "income_bracket": "Middle",
+            "lifecycle_stage": "Young Professional",
+            "region": "Urban"
+          },
+          "personality_traits": {
+            "openness": "High",
+            "conscientiousness": "High",
+            "extraversion": "Moderate",
+            "agreeableness": "Moderate",
+            "neuroticism": "Low"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 4,
+            "importance_of_sustainability": "Very important",
+            "social_responsibility": "Believes businesses should adopt ethical practices",
+            "political_orientation": "Liberal",
+            "cultural_traditions_importance": "Low",
+            "value_priorities": ["Career", "Innovation", "Health"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Morning runs, business meetings, and networking events",
+            "decision_making_style": "Analytical and trend-driven",
+            "purchasing_habits": "Invests in high-quality, sustainable products",
+            "brand_loyalty": "Moderate",
+            "adoption_of_new_products": "High"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Yoga", "Traveling", "Blogging"],
+            "media_consumption": ["Podcasts", "Tech blogs", "Business news"],
+            "favorite_social_media": ["LinkedIn", "Instagram"],
+            "travel_frequency": "Frequent international travel",
+            "cuisine_preferences": ["Mediterranean", "Vegan"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Practices mindfulness", "Seeks mentorship"],
+            "conflict_resolution": "Prefers open discussions",
+            "emotional_expression": "Comfortable",
+            "recent_positive_experience": "Secured funding for her startup"
+          },
+          "communication_style": {
+            "preferred_channels": ["Email", "Phone calls"],
+            "information_preference": ["Detailed data", "Visual aids"],
+            "languages": ["English"],
+            "public_speaking_confidence": "High"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Premium stores", "Online retailers"],
+            "purchase_factors": {
+              "price": 3,
+              "quality": 5,
+              "brand_reputation": 4,
+              "recommendations": 4,
+              "advertising": 2,
+              "convenience": 5,
+              "sustainability": 5,
+              "customer_service": 4
+            },
+            "online_shopping_frequency": "Frequently",
+            "use_of_reviews": "Always",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Laptop", "Smartwatch"],
+            "internet_usage_hours": "7-8 hours",
+            "adoption_of_technology": "Innovator",
+            "primary_online_activities": ["Work", "Learning", "Social networking"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Used a platform for seamless client onboarding",
+            "improvement_suggestions": "Better integration of analytics tools in software",
+            "future_trends": "Increased focus on AI and remote work solutions"
+          },
+          "image": "assets/images/chloe-thompson.png",
+          "imageId": "persona1"
+        },
+        {
+          "id": "persona_rural_working_class_single_uk",
+          "name": "Tom Wilson",
+          "age": 34,
+          "title": "Rural Working-Class",
+          "gender": "Male",
+          "location": "Norfolk",
+          "country_code": "UK",
+          "marital_status": "Single",
+          "education": "High school diploma",
+          "occupation": "Mechanic",
+          "income": "£20,000 - £30,000",
+          "ethnicity": "White British",
+          "religion": "Christian",
+          "description": "Tom is a hardworking mechanic who values family, simple living, and community traditions.",
+          "segments": {
+            "age_group": "25-34",
+            "income_bracket": "Lower Middle",
+            "lifecycle_stage": "Skilled Worker",
+            "region": "Rural"
+          },
+          "personality_traits": {
+            "openness": "Moderate",
+            "conscientiousness": "High",
+            "extraversion": "Moderate",
+            "agreeableness": "High",
+            "neuroticism": "Moderate"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 2,
+            "importance_of_sustainability": "Low",
+            "social_responsibility": "Participates in local fundraisers",
+            "political_orientation": "Conservative",
+            "cultural_traditions_importance": "High",
+            "value_priorities": ["Family", "Community", "Stability"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Spends day repairing vehicles, evenings at the local pub or with family",
+            "decision_making_style": "Practical and budget-conscious",
+            "purchasing_habits": "Prefers reliable, cost-effective products",
+            "brand_loyalty": "Moderate",
+            "adoption_of_new_products": "Low"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Fishing", "Watching sports", "DIY projects"],
+            "media_consumption": ["Radio", "Local news"],
+            "favorite_social_media": ["Facebook"],
+            "travel_frequency": "Rarely travels",
+            "cuisine_preferences": ["British", "Comfort food"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Talks to close friends", "Engages in hobbies"],
+            "conflict_resolution": "Avoids confrontation",
+            "emotional_expression": "Low",
+            "recent_positive_experience": "Helped a neighbor with a car repair"
+          },
+          "communication_style": {
+            "preferred_channels": ["Face-to-face", "Phone"],
+            "information_preference": ["Clear and simple messages"],
+            "languages": ["English"],
+            "public_speaking_confidence": "Low"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Local stores", "Supermarkets"],
+            "purchase_factors": {
+              "price": 4,
+              "quality": 4,
+              "brand_reputation": 3,
+              "recommendations": 2,
+              "advertising": 1,
+              "convenience": 5,
+              "sustainability": 2,
+              "customer_service": 3
+            },
+            "online_shopping_frequency": "Rarely",
+            "use_of_reviews": "Sometimes",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Basic laptop"],
+            "internet_usage_hours": "2-4 hours",
+            "adoption_of_technology": "Late majority",
+            "primary_online_activities": ["News", "Social networking"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Enjoyed a community-led local event",
+            "improvement_suggestions": "Better rural internet access",
+            "future_trends": "Affordable renewable energy solutions for rural areas"
+          },
+          "image": "assets/images/tom-wilson.png",
+          "imageId": "persona2"
+        },{
+          "id": "persona_urban_student_malta",
+          "name": "Sarah Farrugia",
+          "age": 22,
+          "title": "Urban Student",
+          "gender": "Female",
+          "location": "Valletta",
+          "country_code": "MT",
+          "marital_status": "Single",
+          "education": "Bachelor's degree in Marketing (In Progress)",
+          "occupation": "Part-time Retail Assistant",
+          "income": "Less than €10,000",
+          "ethnicity": "Maltese",
+          "religion": "Roman Catholic",
+          "description": "Sarah is a university student balancing her academic responsibilities with part-time work and an active social life in Malta's capital city.",
+          "segments": {
+            "age_group": "18-24",
+            "income_bracket": "Low",
+            "lifecycle_stage": "Student",
+            "region": "Urban"
+          },
+          "personality_traits": {
+            "openness": "High",
+            "conscientiousness": "Moderate",
+            "extraversion": "High",
+            "agreeableness": "High",
+            "neuroticism": "Moderate"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 3,
+            "importance_of_sustainability": "Moderate",
+            "social_responsibility": "Supports social justice causes",
+            "political_orientation": "Liberal",
+            "cultural_traditions_importance": "Moderate",
+            "value_priorities": ["Education", "Social Life", "Personal Growth"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Attends classes, works part-time, and spends evenings with friends or on social media",
+            "decision_making_style": "Influenced by peers and trends",
+            "purchasing_habits": "Spends on fashion and entertainment",
+            "brand_loyalty": "Low",
+            "adoption_of_new_products": "High"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Shopping", "Traveling", "Attending cultural events"],
+            "media_consumption": ["Streaming platforms", "Social media", "Local blogs"],
+            "favorite_social_media": ["Instagram", "TikTok"],
+            "travel_frequency": "One or two trips per year",
+            "cuisine_preferences": ["Italian", "Japanese"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Turns to friends for support", "Practices mindfulness"],
+            "conflict_resolution": "Seeks advice from peers",
+            "emotional_expression": "Moderate",
+            "recent_positive_experience": "Attended a popular music festival in Malta"
+          },
+          "communication_style": {
+            "preferred_channels": ["Social media messaging", "Texting"],
+            "information_preference": ["Summarized key points", "Visual aids"],
+            "languages": ["Maltese", "English"],
+            "public_speaking_confidence": "Moderate"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Online stores", "Local boutiques"],
+            "purchase_factors": {
+              "price": 4,
+              "quality": 3,
+              "brand_reputation": 2,
+              "recommendations": 5,
+              "advertising": 4,
+              "convenience": 5,
+              "sustainability": 3,
+              "customer_service": 3
+            },
+            "online_shopping_frequency": "Frequently",
+            "use_of_reviews": "Often",
+            "impulse_buying": "Occasionally"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Laptop"],
+            "internet_usage_hours": "5-6 hours",
+            "adoption_of_technology": "High",
+            "primary_online_activities": ["Social networking", "Streaming videos", "Shopping"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Received great service at a local boutique",
+            "improvement_suggestions": "More affordable eco-friendly products",
+            "future_trends": "Increased focus on social causes in product marketing"
+          },
+          "image": "assets/images/sarah-farrugia.png",
+          "imageId": "persona1"
+        },
+        {
+          "id": "persona_remote_worker_malta",
+          "name": "Mark Galea",
+          "age": 31,
+          "title": "Remote Worker",
+          "gender": "Male",
+          "location": "Sliema",
+          "country_code": "MT",
+          "marital_status": "Single",
+          "education": "Bachelor's degree in Computer Science",
+          "occupation": "Freelance Web Developer",
+          "income": "€30,000 - €40,000",
+          "ethnicity": "Maltese",
+          "religion": "None",
+          "description": "Mark enjoys the flexibility of freelancing and spends his free time exploring Malta's coastline and networking with other professionals.",
+          "segments": {
+            "age_group": "25-34",
+            "income_bracket": "Middle",
+            "lifecycle_stage": "Young Professional",
+            "region": "Urban"
+          },
+          "personality_traits": {
+            "openness": "High",
+            "conscientiousness": "High",
+            "extraversion": "Moderate",
+            "agreeableness": "Moderate",
+            "neuroticism": "Low"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 4,
+            "importance_of_sustainability": "Very important",
+            "social_responsibility": "Believes in contributing to community projects",
+            "political_orientation": "Liberal",
+            "cultural_traditions_importance": "Low",
+            "value_priorities": ["Career", "Flexibility", "Health"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Works from home or cafes, goes for runs along the promenade, and attends networking events",
+            "decision_making_style": "Data-driven and practical",
+            "purchasing_habits": "Prefers quality over quantity",
+            "brand_loyalty": "Moderate",
+            "adoption_of_new_products": "High"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Running", "Photography", "Gaming"],
+            "media_consumption": ["Tech podcasts", "Online forums"],
+            "favorite_social_media": ["LinkedIn", "Twitter"],
+            "travel_frequency": "Frequent weekend trips",
+            "cuisine_preferences": ["Mediterranean", "Asian"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Goes for a run", "Plays video games"],
+            "conflict_resolution": "Prefers direct communication",
+            "emotional_expression": "Moderate",
+            "recent_positive_experience": "Successfully launched a major project for a client"
+          },
+          "communication_style": {
+            "preferred_channels": ["Email", "Phone calls"],
+            "information_preference": ["Detailed explanations", "Case studies"],
+            "languages": ["Maltese", "English"],
+            "public_speaking_confidence": "High"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Online retailers", "Specialty stores"],
+            "purchase_factors": {
+              "price": 3,
+              "quality": 5,
+              "brand_reputation": 4,
+              "recommendations": 3,
+              "advertising": 2,
+              "convenience": 4,
+              "sustainability": 5,
+              "customer_service": 4
+            },
+            "online_shopping_frequency": "Frequently",
+            "use_of_reviews": "Always",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Laptop", "Smartphone", "Tablet"],
+            "internet_usage_hours": "6-8 hours",
+            "adoption_of_technology": "Early adopter",
+            "primary_online_activities": ["Work", "Networking", "Entertainment"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Used an app that improved his workflow efficiency",
+            "improvement_suggestions": "Better coworking spaces in Malta",
+            "future_trends": "Growth in freelancing platforms and digital nomad hubs"
+          },
+          "image": "assets/images/mark-galea.png",
+          "imageId": "persona2"
+        },
+        {
+          "id": "persona_retired_teacher_uk",
+          "name": "Margaret Davies",
+          "age": 62,
+          "title": "Retired Teacher",
+          "gender": "Female",
+          "location": "York",
+          "country_code": "UK",
+          "marital_status": "Married",
+          "education": "Master's degree in Education",
+          "occupation": "Retired Secondary School Teacher",
+          "income": "£20,000 - £30,000 (pension)",
+          "ethnicity": "White British",
+          "religion": "Christian",
+          "description": "Margaret is a retired educator who enjoys gardening, volunteering, and spending time with her grandchildren.",
+          "segments": {
+            "age_group": "55-65",
+            "income_bracket": "Middle",
+            "lifecycle_stage": "Retiree",
+            "region": "Suburban"
+          },
+          "personality_traits": {
+            "openness": "Moderate",
+            "conscientiousness": "High",
+            "extraversion": "Moderate",
+            "agreeableness": "High",
+            "neuroticism": "Low"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 4,
+            "importance_of_sustainability": "Very important",
+            "social_responsibility": "Strongly values community and education",
+            "political_orientation": "Moderate",
+            "cultural_traditions_importance": "High",
+            "value_priorities": ["Family", "Community", "Health"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Morning walks, gardening, and volunteering at the local library",
+            "decision_making_style": "Practical and experience-driven",
+            "purchasing_habits": "Favors local businesses and sustainable products",
+            "brand_loyalty": "Moderate",
+            "adoption_of_new_products": "Low"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Gardening", "Reading", "Volunteering"],
+            "media_consumption": ["Local newspapers", "Television", "Radio"],
+            "favorite_social_media": ["Facebook"],
+            "travel_frequency": "Occasional domestic trips",
+            "cuisine_preferences": ["British", "Vegetarian"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Meditates", "Spends time outdoors"],
+            "conflict_resolution": "Seeks compromise",
+            "emotional_expression": "Moderate",
+            "recent_positive_experience": "Hosted a successful community book drive"
+          },
+          "communication_style": {
+            "preferred_channels": ["Phone calls", "Face-to-face"],
+            "information_preference": ["Detailed explanations", "Printed materials"],
+            "languages": ["English"],
+            "public_speaking_confidence": "Moderate"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Local stores", "Supermarkets"],
+            "purchase_factors": {
+              "price": 4,
+              "quality": 5,
+              "brand_reputation": 4,
+              "recommendations": 3,
+              "advertising": 2,
+              "convenience": 4,
+              "sustainability": 5,
+              "customer_service": 3
+            },
+            "online_shopping_frequency": "Occasionally",
+            "use_of_reviews": "Often",
+            "impulse_buying": "Rarely"
+          },
+          "technology_usage": {
+            "devices_owned": ["Tablet", "Smartphone"],
+            "internet_usage_hours": "2-3 hours",
+            "adoption_of_technology": "Late majority",
+            "primary_online_activities": ["Reading news", "Social networking"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Appreciated a gardening app with planting guides",
+            "improvement_suggestions": "Simplified digital interfaces for older users",
+            "future_trends": "Growth in eco-friendly gardening products"
+          },
+          "image": "assets/images/margaret-davies.png",
+          "imageId": "persona1"
+        },
+        {
+          "id": "persona_young_professional_uk",
+          "name": "Aisha Khan",
+          "age": 28,
+          "title": "Marketing Specialist",
+          "gender": "Female",
+          "location": "Shoreditch, London",
+          "country_code": "UK",
+          "marital_status": "Single",
+          "education": "Bachelor's degree in Marketing from University of the Arts London",
+          "occupation": "Digital Marketing Specialist at a Fintech Startup",
+          "income": "£45,000",
+          "ethnicity": "British Pakistani",
+          "religion": "Islam",
+          "description": "Aisha is a driven and creative marketing professional who thrives in the fast-paced startup environment. She enjoys exploring London's diverse culinary scene, attending live music events, and experimenting with new technologies.",
+          "segments": {
+            "age_group": "25-34",
+            "income_bracket": "Mid-High",
+            "lifecycle_stage": "Young Professional",
+            "region": "Urban"
+          },
+          "personality_traits": {
+            "openness": "High",
+            "conscientiousness": "High",
+            "extraversion": "High",
+            "agreeableness": "Moderate",
+            "neuroticism": "Moderate"
+          },
+          "values_and_beliefs": {
+            "environmental_concern": 5,
+            "importance_of_sustainability": "Very Important",
+            "social_responsibility": "Supports ethical and sustainable businesses",
+            "political_orientation": "Liberal",
+            "cultural_traditions_importance": "Moderate",
+            "value_priorities": ["Creativity", "Innovation", "Experiences"]
+          },
+          "behavioral_patterns": {
+            "daily_routine": "Works from home or the office, attends networking events, explores new restaurants and bars",
+            "decision_making_style": "Intuitive and collaborative",
+            "purchasing_habits": "Spends on experiences, technology, and sustainable products",
+            "brand_loyalty": "Moderate",
+            "adoption_of_new_products": "Early Adopter"
+          },
+          "preferences_and_interests": {
+            "hobbies": ["Photography", "Traveling", "Live music"],
+            "media_consumption": ["Social media", "Online magazines", "Podcasts"],
+            "favorite_social_media": ["Instagram", "Twitter", "TikTok"],
+            "travel_frequency": "Frequent weekend trips",
+            "cuisine_preferences": ["Thai", "Japanese", "Italian"]
+          },
+          "emotional_responses": {
+            "stress_response": ["Yoga", "Meditation", "Spending time with friends"],
+            "conflict_resolution": "Collaborative and communicative",
+            "emotional_expression": "High",
+            "recent_positive_experience": "Successfully launched a new marketing campaign"
+          },
+          "communication_style": {
+            "preferred_channels": ["Messaging apps", "Email", "Face-to-face"],
+            "information_preference": ["Visual presentations", "Concise summaries"],
+            "languages": ["English", "Urdu"],
+            "public_speaking_confidence": "High"
+          },
+          "consumer_behavior": {
+            "shopping_preferences": ["Online retailers", "Independent boutiques", "Concept stores"],
+            "purchase_factors": {
+              "price": 3,
+              "quality": 4,
+              "brand_reputation": 3,
+              "recommendations": 5,
+              "advertising": 2,
+              "convenience": 5,
+              "sustainability": 5,
+              "customer_service": 4
+            },
+            "online_shopping_frequency": "Very Frequently",
+            "use_of_reviews": "Always",
+            "impulse_buying": "Frequently"
+          },
+          "technology_usage": {
+            "devices_owned": ["Smartphone", "Laptop", "Tablet"],
+            "internet_usage_hours": "8+ hours",
+            "adoption_of_technology": "Early Adopter",
+            "primary_online_activities": ["Social networking", "Shopping", "Entertainment"]
+          },
+          "additional_insights": {
+            "exceptional_experience": "Attended an inspiring tech conference",
+            "improvement_suggestions": "More personalized recommendations from online retailers",
+            "future_trends": "Interested in AR/VR experiences and personalized marketing"
+          },
+          "image": "assets/images/aisha-khan.png",
+          "imageId": "persona_aisha"
+          },
+          {
+            "id": "persona_student_uk",
+            "name": "David Lee",
+            "age": 21,
+            "title": "University Student",
+            "gender": "Male",
+            "location": "Bloomsbury, London",
+            "country_code": "UK",
+            "marital_status": "Single",
+            "education": "Undergraduate student in Computer Science at University College London",
+            "occupation": "Part-time Barista",
+            "income": "£15,000",
+            "ethnicity": "Chinese British",
+            "religion": "None",
+            "description": "David is a tech-savvy and introverted student passionate about gaming, coding, and exploring new technologies. He prefers online communication and values practicality and functionality.",
+            "segments": {
+              "age_group": "18-24",
+              "income_bracket": "Low",
+              "lifecycle_stage": "Student",
+              "region": "Urban"
+            },
+            "personality_traits": {
+              "openness": "High",
+              "conscientiousness": "Moderate",
+              "extraversion": "Low",
+              "agreeableness": "High",
+              "neuroticism": "Moderate"
+            },
+            "values_and_beliefs": {
+              "environmental_concern": 3,
+              "importance_of_sustainability": "Neutral",
+              "social_responsibility": "Believes in open-source software and online communities",
+              "political_orientation": "Liberal",
+              "cultural_traditions_importance": "Low",
+              "value_priorities": ["Knowledge", "Technology", "Efficiency"]
+            },
+            "behavioral_patterns": {
+              "daily_routine": "Attends lectures, studies at the library, works part-time, plays video games",
+              "decision_making_style": "Logical and analytical",
+              "purchasing_habits": "Spends on technology, video games, and books",
+              "brand_loyalty": "Low",
+              "adoption_of_new_products": "Early Adopter"
+            },
+            "preferences_and_interests": {
+              "hobbies": ["Gaming", "Coding", "Reading sci-fi"],
+              "media_consumption": ["YouTube", "Twitch", "Reddit", "Tech blogs"],
+              "favorite_social_media": ["Discord", "Reddit"],
+              "travel_frequency": "Infrequent",
+              "cuisine_preferences": ["Chinese", "Korean", "Pizza"]
+            },
+            "emotional_responses": {
+              "stress_response": ["Plays video games", "Listens to music", "Codes"],
+              "conflict_resolution": "Avoidant",
+              "emotional_expression": "Low",
+              "recent_positive_experience": "Built a new computer"
+            },
+            "communication_style": {
+              "preferred_channels": ["Messaging apps", "Online forums"],
+              "information_preference": ["Technical documentation", "Online tutorials"],
+              "languages": ["English", "Cantonese"],
+              "public_speaking_confidence": "Low"
+            },
+            "consumer_behavior": {
+              "shopping_preferences": ["Online retailers", "Electronics stores"],
+              "purchase_factors": {
+                "price": 5,
+                "quality": 4,
+                "brand_reputation": 2,
+                "recommendations": 4,
+                "advertising": 1,
+                "convenience": 5,
+                "sustainability": 2,
+                "customer_service": 3
+              },
+              "online_shopping_frequency": "Very Frequently",
+              "use_of_reviews": "Always",
+              "impulse_buying": "Occasionally"
+            },
+            "technology_usage": {
+              "devices_owned": ["Gaming PC", "Smartphone", "VR Headset"],
+              "internet_usage_hours": "10+ hours",
+              "adoption_of_technology": "Innovator",
+              "primary_online_activities": ["Gaming", "Coding", "Learning"]
+            },
+            "additional_insights": {
+              "exceptional_experience": "Won a local gaming tournament",
+              "improvement_suggestions": "Faster delivery options for online purchases",
+              "future_trends": "Interested in AI and machine learning"
+            },
+            "image": "assets/images/david-lee.png",
+            "imageId": "persona_david"
+            },{
+              "id": "persona_single_parent_uk",
+              "name": "Maria Rodriguez",
+              "age": 35,
+              "title": "Nurse",
+              "gender": "Female",
+              "location": "Brixton, London",
+              "country_code": "UK",
+              "marital_status": "Single",
+              "education": "Diploma in Nursing from King's College London",
+              "occupation": "Nurse at St Thomas' Hospital",
+              "income": "£38,000",
+              "ethnicity": "White Hispanic (Spanish)",
+              "religion": "Catholic",
+              "description": "Maria is a hardworking and compassionate single mother who prioritizes her two children's well-being. She enjoys spending quality time with her family, cooking traditional Spanish meals, and finding moments of peace in her busy schedule.",
+              "segments": {
+                "age_group": "35-44",
+                "income_bracket": "Mid",
+                "lifecycle_stage": "Single Parent",
+                "region": "Urban"
+              },
+              "personality_traits": {
+                "openness": "Moderate",
+                "conscientiousness": "High",
+                "extraversion": "Moderate",
+                "agreeableness": "High",
+                "neuroticism": "High"
+              },
+              "values_and_beliefs": {
+                "environmental_concern": 4,
+                "importance_of_sustainability": "Important",
+                "social_responsibility": "Volunteers at a local community center",
+                "political_orientation": "Centre-left",
+                "cultural_traditions_importance": "High",
+                "value_priorities": ["Family", "Health", "Security"]
+              },
+              "behavioral_patterns": {
+                "daily_routine": "Works long shifts at the hospital, manages household chores, spends evenings with her children",
+                "decision_making_style": "Practical and cautious",
+                "purchasing_habits": "Prioritizes spending on her children's needs and groceries",
+                "brand_loyalty": "High for essential products",
+                "adoption_of_new_products": "Late Majority"
+              },
+              "preferences_and_interests": {
+                "hobbies": ["Cooking", "Gardening", "Spending time with family"],
+                "media_consumption": ["Television dramas", "Social media (to connect with family)", "Local news"],
+                "favorite_social_media": ["Facebook", "WhatsApp"],
+                "travel_frequency": "Infrequent, mainly family visits to Spain",
+                "cuisine_preferences": ["Spanish", "Italian", "Mexican"]
+              },
+              "emotional_responses": {
+                "stress_response": ["Talks to her sister", "Cooks comfort food", "Prays"],
+                "conflict_resolution": "Compromising and empathetic",
+                "emotional_expression": "Moderate",
+                "recent_positive_experience": "Her daughter won a school award"
+              },
+              "communication_style": {
+                "preferred_channels": ["Phone calls", "Face-to-face"],
+                "information_preference": ["Clear and concise information"],
+                "languages": ["English", "Spanish"],
+                "public_speaking_confidence": "Low"
+              },
+              "consumer_behavior": {
+                "shopping_preferences": ["Supermarkets", "Local markets", "Online retailers for deals"],
+                "purchase_factors": {
+                  "price": 5,
+                  "quality": 4,
+                  "brand_reputation": 3,
+                  "recommendations": 4,
+                  "advertising": 2,
+                  "convenience": 4,
+                  "sustainability": 3,
+                  "customer_service": 4
+                },
+                "online_shopping_frequency": "Occasionally",
+                "use_of_reviews": "Sometimes",
+                "impulse_buying": "Rarely"
+              },
+              "technology_usage": {
+                "devices_owned": ["Smartphone", "Laptop"],
+                "internet_usage_hours": "2-3 hours",
+                "adoption_of_technology": "Late Majority",
+                "primary_online_activities": ["Social networking", "Online banking", "Researching school activities"]
+              },
+              "additional_insights": {
+                "exceptional_experience": "Received excellent care from a doctor when her son was ill",
+                "improvement_suggestions": "More affordable childcare options",
+                "future_trends": "Looking for ways to improve her work-life balance"
+              },
+              "image": "assets/images/maria-rodriguez.png",
+              "imageId": "persona_maria"
+              },{
+                "id": "persona_blue_collar_worker_uk",
+                "name": "Robert Smith",
+                "age": 48,
+                "title": "Construction Worker",
+                "gender": "Male",
+                "location": "Dagenham, London",
+                "country_code": "UK",
+                "marital_status": "Married",
+                "education": "High School Diploma",
+                "occupation": "Construction Worker",
+                "income": "£32,000",
+                "ethnicity": "White British",
+                "religion": "Christian",
+                "description": "Robert is a hardworking and practical construction worker who values his family and enjoys traditional activities. He's a loyal friend and enjoys spending his free time watching football, going to the pub, and working on DIY projects around the house.",
+                "segments": {
+                  "age_group": "45-54",
+                  "income_bracket": "Low-Mid",
+                  "lifecycle_stage": "Established Family",
+                  "region": "Suburban"
+                },
+                "personality_traits": {
+                  "openness": "Low",
+                  "conscientiousness": "High",
+                  "extraversion": "Moderate",
+                  "agreeableness": "High",
+                  "neuroticism": "Low"
+                },
+                "values_and_beliefs": {
+                  "environmental_concern": 2,
+                  "importance_of_sustainability": "Not Important",
+                  "social_responsibility": "Supports local charities",
+                  "political_orientation": "Conservative",
+                  "cultural_traditions_importance": "High",
+                  "value_priorities": ["Family", "Hard work", "Community"]
+                },
+                "behavioral_patterns": {
+                  "daily_routine": "Works on construction sites, watches TV in the evenings, goes to the pub with friends",
+                  "decision_making_style": "Practical and based on experience",
+                  "purchasing_habits": "Spends on DIY tools, family outings, and football tickets",
+                  "brand_loyalty": "High for tools and beer",
+                  "adoption_of_new_products": "Late Majority"
+                },
+                "preferences_and_interests": {
+                  "hobbies": ["DIY", "Watching football (West Ham United)", "Gardening"],
+                  "media_consumption": ["Television (sports and news)", "Newspapers", "Radio"],
+                  "favorite_social_media": ["Facebook"],
+                  "travel_frequency": "Infrequent, usually annual family holidays to the coast",
+                  "cuisine_preferences": ["British", "Indian", "Chinese takeaway"]
+                },
+                "emotional_responses": {
+                  "stress_response": ["Watches TV", "Goes to the pub", "Works on DIY projects"],
+                  "conflict_resolution": "Direct and avoids confrontation",
+                  "emotional_expression": "Low",
+                  "recent_positive_experience": "Finished a major home renovation project"
+                },
+                "communication_style": {
+                  "preferred_channels": ["Face-to-face", "Phone calls"],
+                  "information_preference": ["Simple and straightforward information"],
+                  "languages": ["English"],
+                  "public_speaking_confidence": "Low"
+                },
+                "consumer_behavior": {
+                  "shopping_preferences": ["DIY stores", "Supermarkets", "Local pubs"],
+                  "purchase_factors": {
+                    "price": 4,
+                    "quality": 5,
+                    "brand_reputation": 4,
+                    "recommendations": 5,
+                    "advertising": 3,
+                    "convenience": 3,
+                    "sustainability": 1,
+                    "customer_service": 3
+                  },
+                  "online_shopping_frequency": "Rarely",
+                  "use_of_reviews": "Rarely",
+                  "impulse_buying": "Occasionally"
+                },
+                "technology_usage": {
+                  "devices_owned": ["Smartphone", "Television"],
+                  "internet_usage_hours": "1-2 hours",
+                  "adoption_of_technology": "Laggard",
+                  "primary_online_activities": ["Checking news", "Social networking (Facebook)"]
+                },
+                "additional_insights": {
+                  "exceptional_experience": "Took his family on a memorable holiday",
+                  "improvement_suggestions": "Better public transport options to construction sites",
+                  "future_trends": "Concerned about the impact of technology on his job"
+                },
+                "image": "assets/images/robert-smith.png",
+                "imageId": "persona_robert"
+                },
+                {
+                  "id": "persona_entrepreneur_uk",
+                  "name": "Priya Patel",
+                  "age": 32,
+                  "title": "Tech Entrepreneur",
+                  "gender": "Female",
+                  "location": "Canary Wharf, London",
+                  "country_code": "UK",
+                  "marital_status": "Married",
+                  "education": "Master's degree in Computer Science from Imperial College London",
+                  "occupation": "Founder and CEO of a HealthTech Startup",
+                  "income": "£120,000",
+                  "ethnicity": "British Indian",
+                  "religion": "Hindu",
+                  "description": "Priya is a passionate and driven entrepreneur who thrives on innovation and problem-solving. She is dedicated to building her business and making a positive impact on the healthcare industry.  She enjoys networking, attending industry events, and mentoring aspiring entrepreneurs.",
+                  "segments": {
+                    "age_group": "25-34",
+                    "income_bracket": "High",
+                    "lifecycle_stage": "Entrepreneur",
+                    "region": "Urban"
+                  },
+                  "personality_traits": {
+                    "openness": "High",
+                    "conscientiousness": "High",
+                    "extraversion": "High",
+                    "agreeableness": "Moderate",
+                    "neuroticism": "Low"
+                  },
+                  "values_and_beliefs": {
+                    "environmental_concern": 4,
+                    "importance_of_sustainability": "Important",
+                    "social_responsibility": "Believes in using technology for social good",
+                    "political_orientation": "Liberal",
+                    "cultural_traditions_importance": "Moderate",
+                    "value_priorities": ["Innovation", "Impact", "Growth"]
+                  },
+                  "behavioral_patterns": {
+                    "daily_routine": "Works long hours, attends meetings and conferences, networks with investors and partners",
+                    "decision_making_style": "Strategic and data-driven",
+                    "purchasing_habits": "Invests in technology, professional development, and healthy living",
+                    "brand_loyalty": "Moderate",
+                    "adoption_of_new_products": "Early Adopter"
+                  },
+                  "preferences_and_interests": {
+                    "hobbies": ["Yoga", "Reading business books", "Traveling to tech conferences"],
+                    "media_consumption": ["Tech blogs", "Business news", "Podcasts"],
+                    "favorite_social_media": ["LinkedIn", "Twitter"],
+                    "travel_frequency": "Frequent business trips",
+                    "cuisine_preferences": ["Indian", "Thai", "Vegan"]
+                  },
+                  "emotional_responses": {
+                    "stress_response": ["Exercises", "Meditates", "Spends time with her family"],
+                    "conflict_resolution": "Direct and assertive",
+                    "emotional_expression": "Moderate",
+                    "recent_positive_experience": "Secured funding for her startup"
+                  },
+                  "communication_style": {
+                    "preferred_channels": ["Email", "Video conferencing", "Face-to-face"],
+                    "information_preference": ["Data and analytics", "Executive summaries"],
+                    "languages": ["English", "Hindi", "Gujarati"],
+                    "public_speaking_confidence": "High"
+                  },
+                  "consumer_behavior": {
+                    "shopping_preferences": ["Online retailers", "Specialty stores", "App-based services"],
+                    "purchase_factors": {
+                      "price": 3,
+                      "quality": 5,
+                      "brand_reputation": 4,
+                      "recommendations": 4,
+                      "advertising": 2,
+                      "convenience": 5,
+                      "sustainability": 4,
+                      "customer_service": 4
+                    },
+                    "online_shopping_frequency": "Frequently",
+                    "use_of_reviews": "Often",
+                    "impulse_buying": "Rarely"
+                  },
+                  "technology_usage": {
+                    "devices_owned": ["Smartphone", "Laptop", "Smartwatch", "Tablet"],
+                    "internet_usage_hours": "10+ hours",
+                    "adoption_of_technology": "Innovator",
+                    "primary_online_activities": ["Networking", "Research", "Managing her business"]
+                  },
+                  "additional_insights": {
+                    "exceptional_experience": "Successfully pitched her startup to a major investor",
+                    "improvement_suggestions": "More accessible mentorship programs for female entrepreneurs",
+                    "future_trends": "Interested in AI and machine learning applications in healthcare"
+                  },
+                  "image": "assets/images/priya-patel.png",
+                  "imageId": "persona_priya"
+                  },
+                  {
+                    "id": "persona_retired_teacher_lon_uk",
+                    "name": "Elizabeth Wilson",
+                    "age": 72,
+                    "title": "Retired Teacher",
+                    "gender": "Female",
+                    "location": "Richmond, London",
+                    "country_code": "UK",
+                    "marital_status": "Widowed",
+                    "education": "Bachelor's degree in Education from the University of Cambridge",
+                    "occupation": "Retired Teacher",
+                    "income": "£28,000 (pension and savings)",
+                    "ethnicity": "White British",
+                    "religion": "Church of England",
+                    "description": "Elizabeth is a kind and compassionate retired teacher who enjoys spending time with her grandchildren, gardening, and staying active in her community. She values tradition, family, and lifelong learning.",
+                    "segments": {
+                      "age_group": "65+",
+                      "income_bracket": "Low-Mid",
+                      "lifecycle_stage": "Retiree",
+                      "region": "Suburban"
+                    },
+                    "personality_traits": {
+                      "openness": "Moderate",
+                      "conscientiousness": "High",
+                      "extraversion": "Moderate",
+                      "agreeableness": "High",
+                      "neuroticism": "Low"
+                    },
+                    "values_and_beliefs": {
+                      "environmental_concern": 3,
+                      "importance_of_sustainability": "Important",
+                      "social_responsibility": "Volunteers at a local library",
+                      "political_orientation": "Centre-right",
+                      "cultural_traditions_importance": "High",
+                      "value_priorities": ["Family", "Community", "Learning"]
+                    },
+                    "behavioral_patterns": {
+                      "daily_routine": "Gardens, attends book club meetings, spends time with grandchildren, visits local museums",
+                      "decision_making_style": "Cautious and considered",
+                      "purchasing_habits": "Spends on books, gardening supplies, gifts for grandchildren, and charitable donations",
+                      "brand_loyalty": "High for familiar brands",
+                      "adoption_of_new_products": "Late Majority"
+                    },
+                    "preferences_and_interests": {
+                      "hobbies": ["Gardening", "Reading", "Baking", "Spending time with grandchildren"],
+                      "media_consumption": ["Newspapers", "Television (news and documentaries)", "Radio (classical music)"],
+                      "favorite_social_media": ["Facebook (to connect with family)"],
+                      "travel_frequency": "Infrequent, occasional trips to visit family or historical sites",
+                      "cuisine_preferences": ["British", "French", "Italian"]
+                    },
+                    "emotional_responses": {
+                      "stress_response": ["Reads", "Gardens", "Talks to friends"],
+                      "conflict_resolution": "Avoidant and compromising",
+                      "emotional_expression": "Moderate",
+                      "recent_positive_experience": "Celebrated her grandson's graduation"
+                    },
+                    "communication_style": {
+                      "preferred_channels": ["Face-to-face", "Phone calls", "Letters"],
+                      "information_preference": ["Detailed and reliable information"],
+                      "languages": ["English", "Basic French"],
+                      "public_speaking_confidence": "Moderate"
+                    },
+                    "consumer_behavior": {
+                      "shopping_preferences": ["Local shops", "Garden centres", "Bookstores", "Supermarkets"],
+                      "purchase_factors": {
+                        "price": 4,
+                        "quality": 5,
+                        "brand_reputation": 4,
+                        "recommendations": 5,
+                        "advertising": 2,
+                        "convenience": 3,
+                        "sustainability": 3,
+                        "customer_service": 5
+                      },
+                      "online_shopping_frequency": "Rarely",
+                      "use_of_reviews": "Rarely",
+                      "impulse_buying": "Rarely"
+                    },
+                    "technology_usage": {
+                      "devices_owned": ["Smartphone (mainly for calls and photos)", "Tablet (for browsing and email)"],
+                      "internet_usage_hours": "1-2 hours",
+                      "adoption_of_technology": "Late Majority",
+                      "primary_online_activities": ["Email", "Browsing news", "Connecting with family on social media"]
+                    },
+                    "additional_insights": {
+                      "exceptional_experience": "Went on a memorable trip to the Cotswolds",
+                      "improvement_suggestions": "More accessible community activities for seniors",
+                      "future_trends": "Interested in learning more about using technology to stay connected with family"
+                    },
+                    "image": "assets/images/elizabeth-wilson.png",
+                    "imageId": "persona_elizabeth"
+                    },
+                    {
+                      "id": "persona_executive_retiree_uk_updated",
+                      "name": "James Edwards",
+                      "age": 63,
+                      "title": "Executive Retiree",
+                      "gender": "Male",
+                      "location": "Kensington, London",
+                      "country_code": "UK",
+                      "marital_status": "Divorced",
+                      "education": "Master's degree in Business Administration from London Business School",
+                      "occupation": "Retired CFO",
+                      "income": "£90,000 (pension and investments)",
+                      "ethnicity": "White British",
+                      "religion": "None",
+                      "description": "James is a retired financial executive who enjoys traveling, fine dining, attending the theatre, and mentoring young entrepreneurs. He values intellectual stimulation, personal growth, and maintaining a sophisticated lifestyle.",
+                      "segments": {
+                        "age_group": "55-65",
+                        "income_bracket": "High",
+                        "lifecycle_stage": "Retiree",
+                        "region": "Urban"
+                      },
+                      "personality_traits": {
+                        "openness": "High",
+                        "conscientiousness": "High",
+                        "extraversion": "Moderate",
+                        "agreeableness": "Moderate",
+                        "neuroticism": "Low"
+                      },
+                      "values_and_beliefs": {
+                        "environmental_concern": 3,
+                        "importance_of_sustainability": "Moderately Important",
+                        "social_responsibility": "Supports arts and culture initiatives",
+                        "political_orientation": "Centre-right",
+                        "cultural_traditions_importance": "Moderate",
+                        "value_priorities": ["Intellectual stimulation", "Personal growth", "Luxury"]
+                      },
+                      "behavioral_patterns": {
+                        "daily_routine": "Reads financial news, attends theatre performances, dines at upscale restaurants, mentors young professionals",
+                        "decision_making_style": "Analytical and decisive",
+                        "purchasing_habits": "Spends on travel, fine dining, cultural experiences, and high-quality goods",
+                        "brand_loyalty": "High",
+                        "adoption_of_new_products": "Early Adopter (for technology and travel)"
+                      },
+                      "preferences_and_interests": {
+                        "hobbies": ["Traveling", "Fine dining", "Theatre", "Mentoring", "Investing"],
+                        "media_consumption": ["Financial Times", "The Economist", "BBC News", "Online news platforms"],
+                        "favorite_social_media": ["LinkedIn"],
+                        "travel_frequency": "Frequent international trips",
+                        "cuisine_preferences": ["French", "Italian", "Japanese"]
+                      },
+                      "emotional_responses": {
+                        "stress_response": ["Exercises at the gym", "Practices mindfulness", "Attends the opera"],
+                        "conflict_resolution": "Direct and strategic",
+                        "emotional_expression": "Moderate",
+                        "recent_positive_experience": "Successfully advised a mentee on a business deal"
+                      },
+                      "communication_style": {
+                        "preferred_channels": ["Email", "Face-to-face", "Phone calls"],
+                        "information_preference": ["Detailed reports", "Executive summaries"],
+                        "languages": ["English", "French"],
+                        "public_speaking_confidence": "High"
+                      },
+                      "consumer_behavior": {
+                        "shopping_preferences": ["Luxury boutiques", "Online premium retailers", "Department stores"],
+                        "purchase_factors": {
+                          "price": 2,
+                          "quality": 5,
+                          "brand_reputation": 5,
+                          "recommendations": 4,
+                          "advertising": 3,
+                          "convenience": 4,
+                          "sustainability": 3,
+                          "customer_service": 5
+                        },
+                        "online_shopping_frequency": "Frequently",
+                        "use_of_reviews": "Often",
+                        "impulse_buying": "Occasionally (for luxury goods)"
+                      },
+                      "technology_usage": {
+                        "devices_owned": ["Smartphone", "Laptop", "Smartwatch", "Tablet"],
+                        "internet_usage_hours": "5-6 hours",
+                        "adoption_of_technology": "Early Adopter",
+                        "primary_online_activities": ["Research", "Networking", "Managing investments", "Booking travel"]
+                      },
+                      "additional_insights": {
+                        "exceptional_experience": "Enjoyed a personalized wine tasting experience in Bordeaux",
+                        "improvement_suggestions": "More exclusive travel packages for discerning retirees",
+                        "future_trends": "Interested in personalized health and wellness technologies"
+                      },
+                      "image": "assets/images/james-edwards.png",
+                      "imageId": "persona_james"
+                      }
+      
+      ]
+      

@@ -24,12 +24,10 @@ function App() {
   const [isOverallAnalysisLoading, setIsOverallAnalysisLoading] = useState(false);
 
   const handleGenerate = async ({ feedbackContent, selectedPersonas }) => {
+    console.log('=== Generation Started ===');
+    console.log('Inputs:', { feedbackContent, selectedPersonas });
     const startTime = performance.now();
-    console.log('Starting generation with:', { 
-      contentLength: feedbackContent.length,
-      selectedPersonas 
-    });
-
+    
     if (!feedbackContent || selectedPersonas.length === 0) {
       console.error('Missing required inputs');
       return;
@@ -37,7 +35,7 @@ function App() {
 
     // Reset states
     setFeedbackData({ responses: [], overallAnalysis: null });
-    console.log('States reset');
+    setIsOverallAnalysisLoading(true);
     
     // Initialize loading states
     const initialLoadingState = selectedPersonas.reduce((acc, id) => {
@@ -45,31 +43,37 @@ function App() {
       return acc;
     }, {});
     setLoadingPersonas(initialLoadingState);
-    console.log('Loading states initialized:', initialLoadingState);
 
     try {
       const selectedPersonasData = selectedPersonas
         .map(id => personasData.find(p => p.id === id))
         .filter(Boolean);
-      console.log('Selected personas data:', selectedPersonasData);
+      
+      console.log('Selected Personas Data:', selectedPersonasData);
+      const responseMap = new Map();
 
       // Process personas in parallel
-      console.log('Starting parallel persona processing...');
-      const personaPromises = selectedPersonasData.map(async (persona, index) => {
-        console.log(`Processing persona ${persona.name} (${index + 1}/${selectedPersonasData.length})`);
+      const personaPromises = selectedPersonasData.map(async (persona) => {
         try {
+          console.log(`Starting analysis for persona: ${persona.name}`);
           const detailed = await generateDigitalTwinFeedback(feedbackContent, persona, 'detailed');
-          console.log(`Completed processing for ${persona.name}`);
+          console.log(`Received feedback for ${persona.name}:`, detailed);
           
+          // Update the responses immediately when each one completes
           setFeedbackData(prev => {
-            const newResponses = [...prev.responses];
-            newResponses[index] = {
+            const newResponse = {
               detailed: {
                 ...detailed,
                 persona: persona
               }
             };
-            return { ...prev, responses: newResponses };
+            
+            responseMap.set(persona.id, newResponse);
+            const orderedResponses = selectedPersonas
+              .map(id => responseMap.get(id))
+              .filter(Boolean);
+
+            return { ...prev, responses: orderedResponses };
           });
           
           setLoadingPersonas(prev => ({
@@ -84,36 +88,27 @@ function App() {
         }
       });
 
-      try {
-        console.log('Starting overall analysis...');
-        setIsOverallAnalysisLoading(true);
-        
-        const completedResponses = await Promise.all(personaPromises);
-        console.log('All persona responses completed:', completedResponses);
-        
-        const validResponses = completedResponses.filter(Boolean);
-        console.log('Valid responses for analysis:', validResponses.length);
-        
-        if (validResponses.length > 0) {
-          console.log('Generating overall analysis...');
-          const overallAnalysis = await generateOverallAnalysis(validResponses);
-          console.log('Overall analysis generated:', overallAnalysis);
-          
-          setFeedbackData(prev => ({
-            ...prev,
-            overallAnalysis
-          }));
-        } else {
-          console.warn('No valid responses available for overall analysis');
-        }
-      } catch (error) {
-        console.error('Error in overall analysis:', error);
-      } finally {
-        setIsOverallAnalysisLoading(false);
-        console.log('Overall analysis process completed');
-      }
+      // Wait for all promises to complete
+      const responses = await Promise.all(personaPromises);
+      console.log('=== All Responses Completed ===');
+      console.log('Final Response Map:', Object.fromEntries(responseMap));
+      
+      // Generate overall analysis
+      console.log('Starting overall analysis generation');
+      const overallAnalysis = await generateOverallAnalysis(responses);
+      console.log('Overall Analysis:', overallAnalysis);
+      
+      setFeedbackData(prev => ({
+        ...prev,
+        overallAnalysis
+      }));
+      
+      setIsOverallAnalysisLoading(false);
+      console.log('Time taken:', performance.now() - startTime, 'ms');
+      
     } catch (error) {
-      console.error('Error in generate process:', error);
+      console.error('Error in handleGenerate:', error);
+      setIsOverallAnalysisLoading(false);
     }
   };
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
 const HEADER_HEIGHT = 64;
 const FOOTER_HEIGHT = 48;
-const SIDEBAR_WIDTH = '30%';
+const SIDEBAR_WIDTH = 380;
 
 const MainLayout = ({ 
   children, 
@@ -15,10 +15,7 @@ const MainLayout = ({
   isOverallAnalysisLoading 
 }) => {
   const location = useLocation();
-  
   const showSidebar = location.pathname === '/research-lab';
-
-  // Get loading states from the URL parameters
   const isLoading = location.pathname === '/research-lab' && (
     Object.keys(loadingPersonas || {}).some(key => loadingPersonas[key]) || 
     isOverallAnalysisLoading
@@ -37,17 +34,47 @@ const MainLayout = ({
         }}
       >
         {showSidebar && (
-          <Sidebar 
-            width={SIDEBAR_WIDTH} 
-            onGenerate={onGenerate}
-            isLoading={isLoading}
-          />
+          <Paper
+            elevation={4}
+            sx={{
+              width: SIDEBAR_WIDTH,
+              flexShrink: 0,
+              height: `calc(100vh - ${HEADER_HEIGHT}px)`,
+              position: 'fixed',
+              overflowY: 'auto',
+              bgcolor: 'background.paper',
+              borderRadius: 0,
+              zIndex: 1200,
+              '::-webkit-scrollbar': {
+                width: '8px',
+              },
+              '::-webkit-scrollbar-track': {
+                background: '#f1f1f1',
+              },
+              '::-webkit-scrollbar-thumb': {
+                background: '#888',
+                borderRadius: '4px',
+              },
+              '::-webkit-scrollbar-thumb:hover': {
+                background: '#555',
+              },
+            }}
+          >
+            <Box sx={{ p: 3 }}>
+              <Sidebar 
+                width={SIDEBAR_WIDTH}
+                onGenerate={onGenerate}
+                isLoading={isLoading}
+              />
+            </Box>
+          </Paper>
         )}
         <Box
           sx={{
             flex: 1,
-            width: showSidebar ? `calc(100% - ${SIDEBAR_WIDTH})` : '100%',
-            overflow: 'auto'
+            ml: showSidebar ? `${SIDEBAR_WIDTH}px` : 0,
+            transition: 'margin-left 0.3s ease',
+            width: showSidebar ? `calc(100% - ${SIDEBAR_WIDTH}px)` : '100%',
           }}
         >
           {children}
